@@ -37,8 +37,8 @@ body {
 }
 
 /* Custom pixelated cursors */
-a, button, .btn, .project-card, .nav-toggle, .audio-btn, [role="button"] {
-    cursor: url('../assets/cursors/hand.svg') 8 0, pointer;
+a, button, .btn, .btn-primary, .btn-secondary, .btn-sm, .project-card, .nav-toggle, .audio-btn, .link, .logo, .nav-links a, .tech-icon, .floating-sprite, [role="button"] {
+    cursor: url('../assets/cursors/hand.svg') 8 0, pointer !important;
 }
 
 a {
@@ -912,16 +912,23 @@ img {
     inset: 0;
     pointer-events: none;
     overflow: hidden;
-    z-index: 0;
+    z-index: 100;
 }
 
 .floating-sprite {
     position: absolute;
     bottom: -50px;
     animation: floatUp linear infinite;
-    opacity: 0.15;
+    opacity: 0.25;
     filter: grayscale(0.3);
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, transform 0.2s;
+    pointer-events: auto;
+}
+
+.floating-sprite:hover {
+    opacity: 0.6;
+    transform: scale(1.2);
+    filter: grayscale(0) brightness(1.2);
 }
 
 .floating-sprite.ascii-sprite {

@@ -117,16 +117,16 @@ const AudioSystem = {
         // Create audio elements
         this.bgMusic = new Audio('assets/audio/background.mp3');
         this.bgMusic.loop = true;
-        this.bgMusic.volume = 0.3;
+        this.bgMusic.volume = 0.15;
 
         this.clickSound = new Audio('assets/audio/click.mp3');
-        this.clickSound.volume = 0.5;
+        this.clickSound.volume = 0.3;
 
         this.popSound = new Audio('assets/audio/pop.mp3');
-        this.popSound.volume = 0.4;
+        this.popSound.volume = 0.25;
 
         this.chachingSound = new Audio('assets/audio/chaching.mp3');
-        this.chachingSound.volume = 0.5;
+        this.chachingSound.volume = 0.35;
 
         this.isInitialized = true;
     },
