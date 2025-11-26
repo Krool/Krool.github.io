@@ -250,6 +250,111 @@ img {
     background: var(--bg-secondary);
 }
 
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.stat-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.stat-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+.stat-number {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tech Stack */
+.tech-stack {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.tech-stack-title {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.tech-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tech-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.7;
+    transition: all var(--transition);
+}
+
+.tech-icon:hover {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+
+.tech-icon svg {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.2));
+}
+
+.tech-icon span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+/* Mobile responsive for stats */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-number {
+        font-size: 1.75rem;
+    }
+
+    .tech-icons {
+        gap: 1.5rem;
+    }
+
+    .tech-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+}
+
 /* Projects Section */
 .projects {
     background: var(--bg-secondary);
@@ -587,6 +692,123 @@ img {
     .project-links {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    /* Mobile hero adjustments */
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Mobile project cards */
+    .project-image {
+        height: 160px;
+    }
+
+    .project-content {
+        padding: 1rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .project-content p {
+        font-size: 0.85rem;
+    }
+
+    /* Hide heavy effects on mobile for performance */
+    .matrix-canvas {
+        opacity: 0.3;
+    }
+
+    .parallax-bg {
+        display: none;
+    }
+
+    /* Smaller floating sprites on mobile */
+    .floating-sprite {
+        opacity: 0.1;
+    }
+
+    /* Audio button position on mobile */
+    .audio-control {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .audio-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+
+    /* Loading screen mobile */
+    .loading-logo {
+        font-size: 2.5rem;
+        letter-spacing: 0.3em;
+    }
+
+    .loading-bar-container {
+        width: 250px;
+    }
+
+    /* Touch-friendly buttons */
+    .btn {
+        min-height: 44px;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .btn-sm {
+        min-height: 40px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .stats-grid {
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .tech-icons {
+        gap: 1rem;
+    }
+
+    .tech-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .tech-icon span {
+        font-size: 0.65rem;
+    }
+
+    .project-tags {
+        gap: 0.3rem;
+    }
+
+    .tag {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
     }
 }
 
@@ -929,6 +1151,110 @@ body::after {
 }
 
 /* ============================================
+   SPRITE MINI-GAME
+   ============================================ */
+
+.sprite-score {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(26, 26, 29, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeInScore 0.5s ease 3s forwards;
+}
+
+@keyframes fadeInScore {
+    to { opacity: 1; }
+}
+
+.score-icon {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.score-value {
+    font-weight: 700;
+}
+
+.points-popup {
+    position: fixed;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    pointer-events: none;
+    z-index: 10001;
+    animation: pointsFloat 1s ease-out forwards;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes pointsFloat {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -100%) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150%) scale(1);
+    }
+}
+
+.explosion-particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    animation: explode 0.8s ease-out forwards;
+    box-shadow: 0 0 6px currentColor;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+    }
+}
+
+.target-sprite {
+    animation: targetPulse 0.5s ease-in-out infinite alternate, floatUp linear infinite !important;
+}
+
+@keyframes targetPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+/* Mobile responsive for score */
+@media (max-width: 768px) {
+    .sprite-score {
+        bottom: auto;
+        top: 1rem;
+        left: 1rem;
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* ============================================
    ANIMATED GRADIENT BACKGROUND
    ============================================ */
 
@@ -947,6 +1273,30 @@ body {
     25% { background-position: 50% 0%; }
     50% { background-position: 100% 50%; }
     75% { background-position: 50% 100%; }
+}
+
+/* ============================================
+   REDUCED MOTION (Accessibility)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .matrix-canvas,
+    .parallax-bg,
+    .floating-sprites {
+        display: none !important;
+    }
+
+    body::after {
+        animation: none !important;
+    }
 }
 
 /* ============================================

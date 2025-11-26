@@ -545,3 +545,204 @@ const MouseGlow = {
 };
 
 MouseGlow.init();
+
+// ============================================
+// ANIMATED STATS COUNTER
+// ============================================
+
+const StatsCounter = {
+    stats: document.querySelectorAll('.stat-number'),
+    observed: false,
+
+    init() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.observed) {
+                    this.observed = true;
+                    this.animateAll();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) observer.observe(statsGrid);
+    },
+
+    animateAll() {
+        this.stats.forEach(stat => this.animate(stat));
+    },
+
+    animate(element) {
+        const target = parseInt(element.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+
+        const update = (currentTime) => {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+
+            // Format large numbers with commas
+            element.textContent = current.toLocaleString();
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString();
+            }
+        };
+
+        requestAnimationFrame(update);
+    }
+};
+
+StatsCounter.init();
+
+// ============================================
+// CLICKABLE EXPLODING SPRITES MINI-GAME
+// ============================================
+
+const SpriteGame = {
+    score: 0,
+    container: document.getElementById('floatingSprites'),
+    explosionSound: null,
+
+    init() {
+        // Create explosion sound
+        this.explosionSound = new Audio('assets/audio/pop.mp3');
+        this.explosionSound.volume = 0.6;
+
+        // Make floating sprites clickable
+        this.container.addEventListener('click', (e) => {
+            const sprite = e.target.closest('.floating-sprite');
+            if (sprite) {
+                this.explodeSprite(sprite, e.clientX, e.clientY);
+            }
+        });
+
+        // Spawn special target sprites periodically
+        setInterval(() => this.spawnTarget(), 8000);
+
+        // Create score display
+        this.createScoreDisplay();
+    },
+
+    createScoreDisplay() {
+        const scoreDiv = document.createElement('div');
+        scoreDiv.className = 'sprite-score';
+        scoreDiv.id = 'spriteScore';
+        scoreDiv.innerHTML = '<span class="score-icon">★</span> <span class="score-value">0</span>';
+        document.body.appendChild(scoreDiv);
+    },
+
+    spawnTarget() {
+        const target = document.createElement('div');
+        target.className = 'floating-sprite target-sprite';
+        target.innerHTML = '◆';
+        target.style.cssText = `
+            left: ${Math.random() * 80 + 10}%;
+            animation-duration: ${10 + Math.random() * 5}s;
+            font-size: 40px;
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffd700, 0 0 40px #ff6b00;
+            cursor: pointer;
+            pointer-events: auto;
+        `;
+        this.container.appendChild(target);
+
+        // Remove after animation
+        setTimeout(() => {
+            if (target.parentNode) target.remove();
+        }, 15000);
+    },
+
+    explodeSprite(sprite, x, y) {
+        // Play sound
+        if (AudioSystem.isInitialized) {
+            this.explosionSound.currentTime = 0;
+            this.explosionSound.play().catch(() => {});
+        }
+
+        // Add points
+        const isTarget = sprite.classList.contains('target-sprite');
+        const points = isTarget ? 100 : 10;
+        this.score += points;
+        this.updateScore();
+
+        // Show points popup
+        this.showPoints(x, y, points);
+
+        // Create particle explosion
+        this.createExplosion(x, y, isTarget);
+
+        // Remove sprite
+        sprite.style.pointerEvents = 'none';
+        sprite.style.transition = 'transform 0.2s, opacity 0.2s';
+        sprite.style.transform = 'scale(1.5)';
+        sprite.style.opacity = '0';
+        setTimeout(() => sprite.remove(), 200);
+    },
+
+    updateScore() {
+        const scoreEl = document.querySelector('.score-value');
+        if (scoreEl) scoreEl.textContent = this.score;
+    },
+
+    showPoints(x, y, points) {
+        const popup = document.createElement('div');
+        popup.className = 'points-popup';
+        popup.textContent = `+${points}`;
+        popup.style.left = x + 'px';
+        popup.style.top = y + 'px';
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 1000);
+    },
+
+    createExplosion(x, y, isBig) {
+        const particleCount = isBig ? 20 : 12;
+        const colors = isBig
+            ? ['#ffd700', '#ff6b00', '#ff0000', '#ffff00']
+            : ['#6366f1', '#a855f7', '#818cf8', '#c084fc'];
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'explosion-particle';
+
+            const angle = (Math.PI * 2 * i) / particleCount;
+            const velocity = 50 + Math.random() * 100;
+            const size = isBig ? 8 + Math.random() * 8 : 4 + Math.random() * 6;
+
+            particle.style.cssText = `
+                left: ${x}px;
+                top: ${y}px;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                --dx: ${Math.cos(angle) * velocity}px;
+                --dy: ${Math.sin(angle) * velocity}px;
+            `;
+
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 800);
+        }
+    }
+};
+
+// Initialize game after a delay to let sprites populate
+setTimeout(() => SpriteGame.init(), 2000);
+
+// Make floating sprites interactive
+const originalCreateSprite = FloatingSprites.createSprite.bind(FloatingSprites);
+FloatingSprites.createSprite = function() {
+    originalCreateSprite();
+    // Make the last sprite clickable
+    const sprites = this.container.querySelectorAll('.floating-sprite');
+    const lastSprite = sprites[sprites.length - 1];
+    if (lastSprite) {
+        lastSprite.style.pointerEvents = 'auto';
+        lastSprite.style.cursor = 'crosshair';
+    }
+};
