@@ -145,19 +145,19 @@ const AudioSystem = {
     },
 
     playClick() {
-        if (!this.isInitialized) return;
+        if (!this.isInitialized || !this.isPlaying) return;
         this.clickSound.currentTime = 0;
         this.clickSound.play().catch(() => {});
     },
 
     playPop() {
-        if (!this.isInitialized) return;
+        if (!this.isInitialized || !this.isPlaying) return;
         this.popSound.currentTime = 0;
         this.popSound.play().catch(() => {});
     },
 
     playChaching() {
-        if (!this.isInitialized) return;
+        if (!this.isInitialized || !this.isPlaying) return;
         this.chachingSound.currentTime = 0;
         this.chachingSound.play().catch(() => {});
     }
