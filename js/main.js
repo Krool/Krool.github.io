@@ -613,6 +613,9 @@ const SpriteGame = {
     explosionSound: null,
 
     init() {
+        // Load saved score
+        this.score = parseInt(localStorage.getItem('spriteScore') || '0');
+
         // Create explosion sound
         this.explosionSound = new Audio('assets/audio/pop.mp3');
         this.explosionSound.volume = 0.6;
@@ -636,8 +639,12 @@ const SpriteGame = {
         const scoreDiv = document.createElement('div');
         scoreDiv.className = 'sprite-score';
         scoreDiv.id = 'spriteScore';
-        scoreDiv.innerHTML = '<span class="score-icon">★</span> <span class="score-value">0</span>';
+        scoreDiv.innerHTML = '<span class="score-icon">★</span> <span class="score-value">' + this.score + '</span>';
         document.body.appendChild(scoreDiv);
+    },
+
+    saveScore() {
+        localStorage.setItem('spriteScore', this.score.toString());
     },
 
     spawnTarget() {
@@ -691,6 +698,7 @@ const SpriteGame = {
     updateScore() {
         const scoreEl = document.querySelector('.score-value');
         if (scoreEl) scoreEl.textContent = this.score;
+        this.saveScore();
     },
 
     showPoints(x, y, points) {
