@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(npx serve .)",
+      "WebFetch(domain:www.youtube.com)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial landing page for krool.github.io\n\n- Dark/modern theme with AI game dev focus\n- 5 projects: Roguecraft, SuperSmashTexty, Typecast, Pokemon Blue Gacha, Steam Screenshot Viewer\n- 8-bit audio system with background music and sound effects\n- Floating Pokemon sprites and ASCII characters\n- ASCII cursor trail effect\n- Konami code easter egg\n- Responsive design with mobile support\n- CRT scanlines effect\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
