@@ -117,16 +117,16 @@ const AudioSystem = {
         // Create audio elements
         this.bgMusic = new Audio('assets/audio/background.mp3');
         this.bgMusic.loop = true;
-        this.bgMusic.volume = 0.15;
+        this.bgMusic.volume = 0.1;
 
         this.clickSound = new Audio('assets/audio/click.mp3');
-        this.clickSound.volume = 0.3;
+        this.clickSound.volume = 0.2;
 
         this.popSound = new Audio('assets/audio/pop.mp3');
-        this.popSound.volume = 0.25;
+        this.popSound.volume = 0.17;
 
         this.chachingSound = new Audio('assets/audio/chaching.mp3');
-        this.chachingSound.volume = 0.35;
+        this.chachingSound.volume = 0.24;
 
         this.isInitialized = true;
     },
@@ -618,7 +618,7 @@ const SpriteGame = {
 
         // Create explosion sound
         this.explosionSound = new Audio('assets/audio/pop.mp3');
-        this.explosionSound.volume = 0.6;
+        this.explosionSound.volume = 0.4;
 
         // Make floating sprites clickable
         this.container.addEventListener('click', (e) => {
