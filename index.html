@@ -18,6 +18,15 @@
     <!-- Floating Sprites Container -->
     <div class="floating-sprites" id="floatingSprites"></div>
 
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+
+    <!-- Parallax Background Layers -->
+    <div class="parallax-bg">
+        <div class="parallax-layer parallax-stars" data-speed="0.1"></div>
+        <div class="parallax-layer parallax-grid" data-speed="0.3"></div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Krool</a>
@@ -36,8 +45,9 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Hey, I'm <span class="highlight">Krool</span></h1>
-            <p class="hero-subtitle">Exploring the frontier of AI-assisted game development. Building playable experiences with the help of LLMs, from concept to code to deployment.</p>
+            <h1 class="hero-title glitch" data-text="Hey, I'm Krool">Hey, I'm <span class="highlight">Krool</span></h1>
+            <p class="hero-subtitle typing-text"></p>
+            <p class="hero-subtitle-source" style="display:none;">Exploring the frontier of AI-assisted game development. Building playable experiences with the help of LLMs, from concept to code to deployment.</p>
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="https://github.com/Krool" target="_blank" class="btn btn-secondary">GitHub</a>

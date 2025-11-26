@@ -7,7 +7,12 @@
       "WebFetch(domain:www.youtube.com)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nInitial landing page for krool.github.io\n\n- Dark/modern theme with AI game dev focus\n- 5 projects: Roguecraft, SuperSmashTexty, Typecast, Pokemon Blue Gacha, Steam Screenshot Viewer\n- 8-bit audio system with background music and sound effects\n- Floating Pokemon sprites and ASCII characters\n- ASCII cursor trail effect\n- Konami code easter egg\n- Responsive design with mobile support\n- CRT scanlines effect\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial landing page for krool.github.io\n\n- Dark/modern theme with AI game dev focus\n- 5 projects: Roguecraft, SuperSmashTexty, Typecast, Pokemon Blue Gacha, Steam Screenshot Viewer\n- 8-bit audio system with background music and sound effects\n- Floating Pokemon sprites and ASCII characters\n- ASCII cursor trail effect\n- Konami code easter egg\n- Responsive design with mobile support\n- CRT scanlines effect\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git remote add:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd visual enhancements and interactive effects\n\n- Matrix rain falling code background (canvas)\n- Parallax scrolling with stars and grid layers\n- Glitch text effect on hero title\n- Typing animation for hero subtitle\n- 3D card tilt effect on project hover\n- Animated gradient background\n- Click ripple effects on buttons\n- Enhanced scroll animations (slide from sides, blur fade)\n- Button glow effects on hover\n- Logo hover animation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []

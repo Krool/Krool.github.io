@@ -308,3 +308,199 @@ const KonamiCode = {
 };
 
 KonamiCode.init();
+
+// ============================================
+// TYPING ANIMATION
+// ============================================
+
+const TypingEffect = {
+    element: document.querySelector('.typing-text'),
+    sourceElement: document.querySelector('.hero-subtitle-source'),
+    text: '',
+    index: 0,
+    speed: 40,
+
+    init() {
+        if (!this.element || !this.sourceElement) return;
+        this.text = this.sourceElement.textContent;
+        this.type();
+    },
+
+    type() {
+        if (this.index < this.text.length) {
+            this.element.textContent += this.text.charAt(this.index);
+            this.index++;
+            setTimeout(() => this.type(), this.speed);
+        } else {
+            this.element.classList.add('done');
+        }
+    }
+};
+
+// Start typing after a short delay
+setTimeout(() => TypingEffect.init(), 800);
+
+// ============================================
+// MATRIX RAIN EFFECT
+// ============================================
+
+const MatrixRain = {
+    canvas: document.getElementById('matrixCanvas'),
+    ctx: null,
+    columns: [],
+    chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン',
+    fontSize: 14,
+
+    init() {
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        this.animate();
+    },
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        const columnCount = Math.floor(this.canvas.width / this.fontSize);
+        this.columns = Array(columnCount).fill(1);
+    },
+
+    animate() {
+        // Semi-transparent black to create fade effect
+        this.ctx.fillStyle = 'rgba(10, 10, 11, 0.05)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.fillStyle = '#6366f1';
+        this.ctx.font = this.fontSize + 'px monospace';
+
+        for (let i = 0; i < this.columns.length; i++) {
+            // Random character
+            const char = this.chars[Math.floor(Math.random() * this.chars.length)];
+            const x = i * this.fontSize;
+            const y = this.columns[i] * this.fontSize;
+
+            this.ctx.fillText(char, x, y);
+
+            // Reset column randomly or when it goes off screen
+            if (y > this.canvas.height && Math.random() > 0.975) {
+                this.columns[i] = 0;
+            }
+            this.columns[i]++;
+        }
+
+        requestAnimationFrame(() => this.animate());
+    }
+};
+
+MatrixRain.init();
+
+// ============================================
+// PARALLAX SCROLLING
+// ============================================
+
+const Parallax = {
+    layers: document.querySelectorAll('.parallax-layer'),
+
+    init() {
+        window.addEventListener('scroll', () => this.update());
+        this.update();
+    },
+
+    update() {
+        const scrollY = window.scrollY;
+        this.layers.forEach(layer => {
+            const speed = parseFloat(layer.dataset.speed) || 0.5;
+            const yPos = -(scrollY * speed);
+            layer.style.transform = `translateY(${yPos}px)`;
+        });
+    }
+};
+
+Parallax.init();
+
+// ============================================
+// 3D CARD TILT EFFECT
+// ============================================
+
+const CardTilt = {
+    cards: document.querySelectorAll('.project-card'),
+    maxTilt: 10,
+
+    init() {
+        this.cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => this.tilt(e, card));
+            card.addEventListener('mouseleave', (e) => this.reset(card));
+            card.addEventListener('mouseenter', () => card.classList.add('tilting'));
+        });
+    },
+
+    tilt(e, card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const tiltX = ((y - centerY) / centerY) * this.maxTilt;
+        const tiltY = ((centerX - x) / centerX) * this.maxTilt;
+
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+    },
+
+    reset(card) {
+        card.classList.remove('tilting');
+        card.style.transform = '';
+    }
+};
+
+CardTilt.init();
+
+// ============================================
+// CLICK RIPPLE EFFECT
+// ============================================
+
+const RippleEffect = {
+    init() {
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', (e) => this.create(e, btn));
+        });
+    },
+
+    create(e, btn) {
+        const rect = btn.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+        btn.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+    }
+};
+
+RippleEffect.init();
+
+// ============================================
+// MOUSE GLOW EFFECT ON HERO
+// ============================================
+
+const MouseGlow = {
+    hero: document.querySelector('.hero'),
+
+    init() {
+        if (!this.hero) return;
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            this.hero.style.setProperty('--mouse-x', x + '%');
+            this.hero.style.setProperty('--mouse-y', y + '%');
+        });
+    }
+};
+
+MouseGlow.init();
