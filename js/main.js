@@ -743,3 +743,59 @@ const SpriteGame = {
 
 // Initialize game after a delay to let sprites populate
 setTimeout(() => SpriteGame.init(), 2000);
+
+// ============================================
+// ASCII RAIN EFFECT
+// ============================================
+
+const AsciiRain = {
+    container: document.getElementById('asciiRain'),
+    chars: ['0', '1', '@', '#', '$', '%', '&', '*', '+', '=', '~', '^', '/', '\\', '|', '-', '_', '.', ':', ';'],
+    maxDrops: 30,
+
+    init() {
+        if (!this.container) return;
+
+        // Create initial drops
+        for (let i = 0; i < this.maxDrops; i++) {
+            setTimeout(() => this.createDrop(), i * 200);
+        }
+
+        // Continuously spawn new drops
+        setInterval(() => this.createDrop(), 500);
+    },
+
+    createDrop() {
+        const drop = document.createElement('div');
+        drop.className = 'ascii-drop';
+
+        // Generate random string of ASCII chars
+        const length = 5 + Math.floor(Math.random() * 15);
+        let text = '';
+        for (let i = 0; i < length; i++) {
+            text += this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+        drop.textContent = text;
+
+        // Random position and timing
+        const startX = Math.random() * 100;
+        const duration = 8 + Math.random() * 12;
+        const delay = Math.random() * 2;
+
+        drop.style.cssText = `
+            left: ${startX}%;
+            animation-duration: ${duration}s;
+            animation-delay: -${delay}s;
+            font-size: ${10 + Math.random() * 6}px;
+        `;
+
+        this.container.appendChild(drop);
+
+        // Remove after animation
+        setTimeout(() => {
+            if (drop.parentNode) drop.remove();
+        }, duration * 1000);
+    }
+};
+
+AsciiRain.init();
