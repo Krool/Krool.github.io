@@ -250,6 +250,8 @@ const FloatingSprites = {
             animation-duration: ${duration}s;
             animation-delay: -${delay}s;
             font-size: ${size}px;
+            pointer-events: auto;
+            cursor: crosshair;
         `;
 
         if (sprite.querySelector('img')) {
@@ -733,16 +735,3 @@ const SpriteGame = {
 
 // Initialize game after a delay to let sprites populate
 setTimeout(() => SpriteGame.init(), 2000);
-
-// Make floating sprites interactive
-const originalCreateSprite = FloatingSprites.createSprite.bind(FloatingSprites);
-FloatingSprites.createSprite = function() {
-    originalCreateSprite();
-    // Make the last sprite clickable
-    const sprites = this.container.querySelectorAll('.floating-sprite');
-    const lastSprite = sprites[sprites.length - 1];
-    if (lastSprite) {
-        lastSprite.style.pointerEvents = 'auto';
-        lastSprite.style.cursor = 'crosshair';
-    }
-};
