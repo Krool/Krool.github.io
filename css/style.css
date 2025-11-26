@@ -33,6 +33,12 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    cursor: url('../assets/cursors/pointer.svg'), auto;
+}
+
+/* Custom pixelated cursors */
+a, button, .btn, .project-card, .nav-toggle, .audio-btn, [role="button"] {
+    cursor: url('../assets/cursors/hand.svg') 8 0, pointer;
 }
 
 a {
@@ -287,6 +293,7 @@ img {
 /* Project-specific themed backgrounds */
 .project-image.roguecraft {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    position: relative;
 }
 
 .project-image.roguecraft::before {
@@ -294,89 +301,137 @@ img {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
-        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
-        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.2), transparent),
-        radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.3), transparent);
+        url('../assets/images/roguecraft-icon.png'),
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 200px 60px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 250px 90px, rgba(255,255,255,0.3), transparent);
+    background-size: 120px, 4px, 4px, 2px, 4px, 2px, 2px, 4px;
+    background-position: center, 20px 30px, 40px 70px, 90px 40px, 130px 80px, 160px 30px, 200px 60px, 250px 90px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
     animation: twinkle 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.4));
 }
 
 .project-image.roguecraft::after {
-    content: '▲';
-    font-size: 3rem;
-    color: rgba(99, 102, 241, 0.8);
-    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(26, 26, 46, 0.6) 100%);
 }
 
 .project-image.pokemon {
     background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 50%, #1e3a5f 100%);
-}
-
-.project-image.pokemon::after {
-    content: '';
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(180deg, #ff6b6b 50%, #fff 50%);
-    border: 4px solid #333;
     position: relative;
 }
 
 .project-image.pokemon::before {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #fff;
-    border: 4px solid #333;
-    border-radius: 50%;
-    z-index: 1;
+    inset: 0;
+    background-image:
+        url('../assets/images/pokemon/pikachu.png'),
+        url('../assets/images/pokemon/charizard.png'),
+        url('../assets/images/pokemon/mewtwo.png'),
+        url('../assets/images/pokemon/masterball.png');
+    background-size: 64px, 64px, 64px, 48px;
+    background-position: 20% 50%, 50% 30%, 80% 50%, 50% 75%;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
+}
+
+.project-image.pokemon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(30, 58, 95, 0.7) 100%);
 }
 
 .project-image.smashtexty {
     background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
     font-family: var(--font-mono);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image.smashtexty::before {
+    content: '╔══════════════╗\A║  [@] vs [#]  ║\A║   FIGHT!     ║\A╚══════════════╝';
+    white-space: pre;
+    position: absolute;
+    font-size: 0.9rem;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    animation: asciiFlicker 0.1s infinite;
 }
 
 .project-image.smashtexty::after {
-    content: '[@]  vs  [#]';
-    font-size: 1.5rem;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00;
-    letter-spacing: 2px;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent 50%, rgba(0, 255, 0, 0.03) 50%),
+        linear-gradient(0deg, transparent 50%, rgba(0, 255, 0, 0.02) 50%);
+    background-size: 4px 4px, 4px 4px;
+    pointer-events: none;
+}
+
+@keyframes asciiFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
 }
 
 .project-image.screenshot {
-    background: linear-gradient(135deg, #1b2838 0%, #2a475e 100%);
+    background: linear-gradient(135deg, #1b2838 0%, #171a21 50%, #2a475e 100%);
+    position: relative;
+}
+
+.project-image.screenshot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(45deg, transparent 30%, rgba(102, 192, 244, 0.1) 50%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(42, 71, 94, 0.3) 20px, rgba(42, 71, 94, 0.3) 21px);
+    animation: steamShine 3s ease-in-out infinite;
 }
 
 .project-image.screenshot::after {
-    content: '🎮';
-    font-size: 3rem;
-    filter: grayscale(0.3);
+    content: '📷 STEAM';
+    font-size: 1.2rem;
+    font-family: var(--font-mono);
+    color: #66c0f4;
+    text-shadow: 0 0 10px rgba(102, 192, 244, 0.5);
+    letter-spacing: 3px;
+}
+
+@keyframes steamShine {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 .project-image.typecast {
     background: linear-gradient(135deg, #2d1b4e 0%, #4a1942 50%, #1a1a2e 100%);
+    background-size: cover;
+    background-position: center;
     font-family: var(--font-mono);
 }
 
 .project-image.typecast::before {
-    content: 'DRAGON';
-    position: absolute;
-    font-size: 1rem;
-    color: rgba(255, 100, 100, 0.4);
-    top: 30%;
-    animation: fall 2s ease-in infinite;
+    content: '';
+    display: none;
 }
 
 .project-image.typecast::after {
-    content: '⌨️ TYPE';
-    font-size: 1.5rem;
-    color: #f0c674;
-    text-shadow: 0 0 15px rgba(240, 198, 116, 0.5);
-    letter-spacing: 3px;
+    content: '';
+    display: none;
 }
 
 @keyframes fall {
@@ -723,6 +778,108 @@ img {
 }
 
 /* ============================================
+   RETRO LOADING SCREEN
+   ============================================ */
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0b;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-logo {
+    font-family: var(--font-mono);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow:
+        0 0 10px rgba(99, 102, 241, 0.5),
+        0 0 20px rgba(99, 102, 241, 0.3),
+        0 0 40px rgba(99, 102, 241, 0.2);
+    letter-spacing: 0.5em;
+    margin-bottom: 2rem;
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(99, 102, 241, 0.8), 0 0 40px rgba(99, 102, 241, 0.5), 0 0 60px rgba(99, 102, 241, 0.3); }
+}
+
+.loading-bar-container {
+    width: 300px;
+    height: 20px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.loading-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    transition: width 0.1s ease;
+    position: relative;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 8px,
+        rgba(255, 255, 255, 0.1) 8px,
+        rgba(255, 255, 255, 0.1) 16px
+    );
+}
+
+.loading-text {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+}
+
+.loading-dots::after {
+    content: '';
+    animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+}
+
+.loading-tip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* ============================================
    SCANLINES EFFECT (CRT feel)
    ============================================ */
 
@@ -739,6 +896,36 @@ body::before {
         transparent 1px,
         transparent 2px
     );
+}
+
+/* ============================================
+   NOISE/GRAIN OVERLAY
+   ============================================ */
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: grainShift 0.5s steps(10) infinite;
+}
+
+@keyframes grainShift {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-1%, -1%); }
+    20% { transform: translate(1%, 1%); }
+    30% { transform: translate(-1%, 1%); }
+    40% { transform: translate(1%, -1%); }
+    50% { transform: translate(-1%, 0); }
+    60% { transform: translate(1%, 0); }
+    70% { transform: translate(0, 1%); }
+    80% { transform: translate(0, -1%); }
+    90% { transform: translate(1%, 1%); }
 }
 
 /* ============================================

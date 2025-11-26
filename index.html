@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Krool - AI-Assisted Game Development">
     <title>Krool | AI Game Dev</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Retro Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">KROOL</div>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
+            <div class="loading-text">LOADING<span class="loading-dots"></span></div>
+            <div class="loading-tip">TIP: Press the Konami Code for a surprise!</div>
+        </div>
+    </div>
+
     <!-- Audio Player Control -->
     <div class="audio-control" id="audioControl">
         <button class="audio-btn" id="audioBtn" aria-label="Toggle music">
@@ -115,7 +128,7 @@
 
                 <!-- 3. Typecast -->
                 <article class="project-card featured">
-                    <div class="project-image typecast">
+                    <div class="project-image typecast" style="background-image: url('assets/images/typecast-thumb.jpg');">
                         <span class="project-badge">Featured</span>
                     </div>
                     <div class="project-content">

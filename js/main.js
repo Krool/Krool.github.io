@@ -1,3 +1,44 @@
+// ============================================
+// RETRO LOADING SCREEN
+// ============================================
+
+const LoadingScreen = {
+    screen: document.getElementById('loadingScreen'),
+    bar: document.getElementById('loadingBar'),
+    progress: 0,
+
+    init() {
+        this.simulateLoading();
+    },
+
+    simulateLoading() {
+        const interval = setInterval(() => {
+            // Random progress increment for retro feel
+            this.progress += Math.random() * 15 + 5;
+
+            if (this.progress >= 100) {
+                this.progress = 100;
+                this.bar.style.width = '100%';
+                clearInterval(interval);
+
+                // Hide loading screen after a brief pause
+                setTimeout(() => {
+                    this.screen.classList.add('hidden');
+                    // Remove from DOM after transition
+                    setTimeout(() => {
+                        this.screen.remove();
+                    }, 500);
+                }, 300);
+            } else {
+                this.bar.style.width = this.progress + '%';
+            }
+        }, 150);
+    }
+};
+
+// Initialize loading screen
+LoadingScreen.init();
+
 // Mobile Navigation Toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
