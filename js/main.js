@@ -193,15 +193,34 @@ document.querySelectorAll('.project-card').forEach(card => {
 
 const FloatingSprites = {
     container: document.getElementById('floatingSprites'),
-    sprites: [
-        'assets/sprites/pikachu.png',
-        'assets/sprites/charizard.png',
-        'assets/sprites/bulbasaur.png',
-        'assets/sprites/mewtwo.png',
-        'assets/sprites/masterball.png',
-        'assets/sprites/pokeball.png'
+    // ASCII spaceships and game characters
+    asciiSprites: [
+        // Spaceships (Roguecraft style)
+        '▲',
+        '△',
+        '◆',
+        '◇',
+        '►',
+        '◄',
+        '⬡',
+        '⬢',
+        // SuperSmashTexty characters
+        '@',
+        '#',
+        '☆',
+        '★',
+        '◎',
+        '⊕',
+        '⊗',
+        // Space/sci-fi symbols
+        '⟐',
+        '⌬',
+        '⎔',
+        '✦',
+        '✧',
+        '⚡',
+        '☄',
     ],
-    asciiChars: ['@', '#', '*', '+', '=', '~', '^', '%', '&'],
     maxSprites: 15,
     activeSprites: [],
 
@@ -223,21 +242,10 @@ const FloatingSprites = {
         }
 
         const sprite = document.createElement('div');
-        sprite.className = 'floating-sprite';
+        sprite.className = 'floating-sprite ascii-sprite';
 
-        // Randomly choose between image sprite or ASCII character
-        if (Math.random() > 0.4) {
-            // Image sprite
-            const img = document.createElement('img');
-            img.src = this.sprites[Math.floor(Math.random() * this.sprites.length)];
-            img.alt = '';
-            sprite.appendChild(img);
-            sprite.classList.add('image-sprite');
-        } else {
-            // ASCII character
-            sprite.textContent = this.asciiChars[Math.floor(Math.random() * this.asciiChars.length)];
-            sprite.classList.add('ascii-sprite');
-        }
+        // Pick random ASCII sprite
+        sprite.textContent = this.asciiSprites[Math.floor(Math.random() * this.asciiSprites.length)];
 
         // Random position and animation
         const startX = Math.random() * 100;
@@ -253,10 +261,6 @@ const FloatingSprites = {
             pointer-events: auto;
             cursor: crosshair;
         `;
-
-        if (sprite.querySelector('img')) {
-            sprite.querySelector('img').style.width = `${size}px`;
-        }
 
         this.container.appendChild(sprite);
         this.activeSprites.push(sprite);
@@ -414,7 +418,7 @@ const MatrixRain = {
         this.ctx.fillStyle = 'rgba(10, 10, 11, 0.05)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.fillStyle = '#6366f1';
+        this.ctx.fillStyle = '#00d4ff';
         this.ctx.font = this.fontSize + 'px monospace';
 
         for (let i = 0; i < this.columns.length; i++) {
@@ -715,7 +719,7 @@ const SpriteGame = {
         const particleCount = isBig ? 20 : 12;
         const colors = isBig
             ? ['#ffd700', '#ff6b00', '#ff0000', '#ffff00']
-            : ['#6366f1', '#a855f7', '#818cf8', '#c084fc'];
+            : ['#00d4ff', '#00ff88', '#39ddff', '#00ffaa'];
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');

@@ -12,7 +12,15 @@
       "Bash(git remote set-url:*)",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nAdd visual enhancements and interactive effects\n\n- Matrix rain falling code background (canvas)\n- Parallax scrolling with stars and grid layers\n- Glitch text effect on hero title\n- Typing animation for hero subtitle\n- 3D card tilt effect on project hover\n- Animated gradient background\n- Click ripple effects on buttons\n- Enhanced scroll animations (slide from sides, blur fade)\n- Button glow effects on hover\n- Logo hover animation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd visual enhancements and interactive effects\n\n- Matrix rain falling code background (canvas)\n- Parallax scrolling with stars and grid layers\n- Glitch text effect on hero title\n- Typing animation for hero subtitle\n- 3D card tilt effect on project hover\n- Animated gradient background\n- Click ripple effects on buttons\n- Enhanced scroll animations (slide from sides, blur fade)\n- Button glow effects on hover\n- Logo hover animation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(curl:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:krool.github.io)",
+      "WebFetch(domain:lpm24.github.io)",
+      "Bash(copy \"C:\\Users\\junk7\\AcecraftPrototype\\public\\icon-512.png\" \"C:\\Users\\junk7\\HomePage\\assets\\images\\roguecraft-icon.png\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd retro visual enhancements\n\n- Real project screenshots/GIFs for all project cards\n  - Pokemon Blue Gacha: Multiple Pokemon sprites (Pikachu, Charizard, Mewtwo) with masterball\n  - Roguecraft: Space shooter icon with starfield\n  - SuperSmashTexty: Animated ASCII art terminal box\n  - Steam Screenshot Viewer: Steam-styled gradient with shine effect\n  - Typecast: YouTube thumbnail integration\n- Custom pixelated SVG cursors (pointer and hand)\n- Retro loading screen with animated progress bar\n- Film grain/noise overlay effect\n- Custom K-shaped favicon\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "WebFetch(domain:api.github.com)"
     ],
     "deny": [],
     "ask": []
