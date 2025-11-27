@@ -89,13 +89,13 @@ img {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(135deg, #0891b2, #0d9488);
     color: var(--text-primary);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 40px rgba(8, 145, 178, 0.4);
 }
 
 .btn-secondary {
