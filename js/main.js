@@ -463,41 +463,41 @@ const Parallax = {
 Parallax.init();
 
 // ============================================
-// 3D CARD TILT EFFECT
+// 3D CARD TILT EFFECT (disabled)
 // ============================================
 
-const CardTilt = {
-    cards: document.querySelectorAll('.project-card'),
-    maxTilt: 10,
-
-    init() {
-        this.cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => this.tilt(e, card));
-            card.addEventListener('mouseleave', (e) => this.reset(card));
-            card.addEventListener('mouseenter', () => card.classList.add('tilting'));
-        });
-    },
-
-    tilt(e, card) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const tiltX = ((y - centerY) / centerY) * this.maxTilt;
-        const tiltY = ((centerX - x) / centerX) * this.maxTilt;
-
-        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
-    },
-
-    reset(card) {
-        card.classList.remove('tilting');
-        card.style.transform = '';
-    }
-};
-
-CardTilt.init();
+// const CardTilt = {
+//     cards: document.querySelectorAll('.project-card'),
+//     maxTilt: 10,
+//
+//     init() {
+//         this.cards.forEach(card => {
+//             card.addEventListener('mousemove', (e) => this.tilt(e, card));
+//             card.addEventListener('mouseleave', (e) => this.reset(card));
+//             card.addEventListener('mouseenter', () => card.classList.add('tilting'));
+//         });
+//     },
+//
+//     tilt(e, card) {
+//         const rect = card.getBoundingClientRect();
+//         const x = e.clientX - rect.left;
+//         const y = e.clientY - rect.top;
+//         const centerX = rect.width / 2;
+//         const centerY = rect.height / 2;
+//
+//         const tiltX = ((y - centerY) / centerY) * this.maxTilt;
+//         const tiltY = ((centerX - x) / centerX) * this.maxTilt;
+//
+//         card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+//     },
+//
+//     reset(card) {
+//         card.classList.remove('tilting');
+//         card.style.transform = '';
+//     }
+// };
+//
+// CardTilt.init();
 
 // ============================================
 // CLICK RIPPLE EFFECT
