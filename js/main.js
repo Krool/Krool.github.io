@@ -13,26 +13,26 @@ const LoadingScreen = {
 
     simulateLoading() {
         const interval = setInterval(() => {
-            // Random progress increment for retro feel
-            this.progress += Math.random() * 15 + 5;
+            // Fast progress increment
+            this.progress += Math.random() * 40 + 30;
 
             if (this.progress >= 100) {
                 this.progress = 100;
                 this.bar.style.width = '100%';
                 clearInterval(interval);
 
-                // Hide loading screen after a brief pause
+                // Hide loading screen quickly
                 setTimeout(() => {
                     this.screen.classList.add('hidden');
                     // Remove from DOM after transition
                     setTimeout(() => {
                         this.screen.remove();
-                    }, 500);
-                }, 300);
+                    }, 300);
+                }, 100);
             } else {
                 this.bar.style.width = this.progress + '%';
             }
-        }, 150);
+        }, 50);
     }
 };
 
