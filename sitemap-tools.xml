@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Car Compare -->
+  <url>
+    <loc>https://krool.github.io/CarCompare/</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/CarCompare/og-preview.png</image:loc>
+      <image:title>Car Compare - Find Cars That Fit Your Garage</image:title>
+      <image:caption>Compare cars by dimensions, price, fuel type, and more</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Fantasy Football Analyzer -->
+  <url>
+    <loc>https://krool.github.io/FantasyFootballAnalyzer/</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/FantasyFootballAnalyzer/og-preview.png</image:loc>
+      <image:title>Fantasy Football Analyzer</image:title>
+      <image:caption>Analyze your fantasy football league with draft grades and team comparisons</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Travel Agent Zero -->
+  <url>
+    <loc>https://krool.github.io/TravelAgentZero/</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/TravelAgentZero/og-preview.png</image:loc>
+      <image:title>Travel Agent Zero</image:title>
+      <image:caption>A retro-futuristic travel planning companion</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Travel Agent Zero - Sub pages -->
+  <url>
+    <loc>https://krool.github.io/TravelAgentZero/travelers</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://krool.github.io/TravelAgentZero/settings</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

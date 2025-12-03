@@ -1,5 +1,16 @@
 # Robots.txt for krool.github.io
+# Krool World - AI-Assisted Game Development Portfolio
+
 User-agent: *
 Allow: /
 
+# Crawl-delay for polite crawling (optional, respected by some bots)
+Crawl-delay: 1
+
+# Main sitemap index (contains all sub-sitemaps)
 Sitemap: https://krool.github.io/sitemap.xml
+
+# Individual sitemaps for faster discovery
+Sitemap: https://krool.github.io/sitemap-main.xml
+Sitemap: https://krool.github.io/sitemap-games.xml
+Sitemap: https://krool.github.io/sitemap-tools.xml

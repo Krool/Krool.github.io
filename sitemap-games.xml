@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Roguecraft - Featured Game -->
+  <url>
+    <loc>https://krool.github.io/AcecraftPrototype/</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/AcecraftPrototype/og-preview.png</image:loc>
+      <image:title>Roguecraft - Roguelike Space Shooter</image:title>
+      <image:caption>A vertical roguelike space shooter with 20+ enemies, 20 weapons, 19 characters, and 26 weapon evolutions</image:caption>
+    </image:image>
+  </url>
+
+  <!-- SuperSmashTexty - Featured Game (external domain) -->
+  <url>
+    <loc>https://lpm24.github.io/SuperSmashTexty/</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://lpm24.github.io/SuperSmashTexty/og-preview.png</image:loc>
+      <image:title>SuperSmashTexty - ASCII Roguelike Arena</image:title>
+      <image:caption>A roguelike arena game with ASCII aesthetics and up to 4-player co-op</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Pokemon Blue Gacha -->
+  <url>
+    <loc>https://krool.github.io/PokemonBlueGacha/</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/PokemonBlueGacha/og-preview.png</image:loc>
+      <image:title>Pokemon Blue Gacha</image:title>
+      <image:caption>A browser-based gacha collection game featuring all 151 Gen 1 Pokemon</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
