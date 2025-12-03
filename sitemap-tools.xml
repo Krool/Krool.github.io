@@ -5,7 +5,7 @@
   <!-- Car Compare -->
   <url>
     <loc>https://krool.github.io/CarCompare/</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -18,7 +18,7 @@
   <!-- Fantasy Football Analyzer -->
   <url>
     <loc>https://krool.github.io/FantasyFootballAnalyzer/</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -31,7 +31,7 @@
   <!-- Travel Agent Zero -->
   <url>
     <loc>https://krool.github.io/TravelAgentZero/</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -44,14 +44,14 @@
   <!-- Travel Agent Zero - Sub pages -->
   <url>
     <loc>https://krool.github.io/TravelAgentZero/travelers</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://krool.github.io/TravelAgentZero/settings</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

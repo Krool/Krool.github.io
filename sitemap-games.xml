@@ -5,7 +5,7 @@
   <!-- Roguecraft - Featured Game -->
   <url>
     <loc>https://krool.github.io/AcecraftPrototype/</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -18,7 +18,7 @@
   <!-- SuperSmashTexty - Featured Game (external domain) -->
   <url>
     <loc>https://lpm24.github.io/SuperSmashTexty/</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -31,7 +31,7 @@
   <!-- Pokemon Blue Gacha -->
   <url>
     <loc>https://krool.github.io/PokemonBlueGacha/</loc>
-    <lastmod>2025-12-03</lastmod>
+    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
