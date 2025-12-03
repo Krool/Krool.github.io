@@ -1,0 +1,5 @@
+# Robots.txt for krool.github.io
+User-agent: *
+Allow: /
+
+Sitemap: https://krool.github.io/sitemap.xml
