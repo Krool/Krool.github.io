@@ -1,26 +1,21 @@
 {
   "permissions": {
     "allow": [
+      "Bash(Where-Object { $_ullName -notmatch \"node_modules|\\.next|dist|build|__pycache__\" })",
+      "Bash(ForEach-Object { $_ullName })",
+      "Bash(Select-Object -First 30)",
+      "Bash(git -C \"C:/Users/junk7/KroolWorld/HomePage\" add .)",
+      "Bash(git -C \"C:/Users/junk7/KroolWorld/HomePage\" commit -m \"$(cat <<''EOF''\nUpdate stats and fix button consistency\n\n- Changed \"Try It\" to \"View Site\" for consistency\n- Updated \"Playable in Browser\" to \"Usable in Browser\" (6 projects)\n- Updated Lines of Code to 85,000 (recounted across all 8 projects)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git -C \"C:/Users/junk7/KroolWorld/HomePage\" push)",
       "WebSearch",
-      "WebFetch(domain:github.com)",
-      "Bash(npx serve .)",
-      "WebFetch(domain:www.youtube.com)",
-      "Bash(git init:*)",
-      "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nInitial landing page for krool.github.io\n\n- Dark/modern theme with AI game dev focus\n- 5 projects: Roguecraft, SuperSmashTexty, Typecast, Pokemon Blue Gacha, Steam Screenshot Viewer\n- 8-bit audio system with background music and sound effects\n- Floating Pokemon sprites and ASCII characters\n- ASCII cursor trail effect\n- Konami code easter egg\n- Responsive design with mobile support\n- CRT scanlines effect\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git remote add:*)",
-      "Bash(git remote set-url:*)",
-      "Bash(git branch:*)",
-      "Bash(git push:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nAdd visual enhancements and interactive effects\n\n- Matrix rain falling code background (canvas)\n- Parallax scrolling with stars and grid layers\n- Glitch text effect on hero title\n- Typing animation for hero subtitle\n- 3D card tilt effect on project hover\n- Animated gradient background\n- Click ripple effects on buttons\n- Enhanced scroll animations (slide from sides, blur fade)\n- Button glow effects on hover\n- Logo hover animation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(curl:*)",
-      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:www.thegrove.co)",
+      "Bash(start \"\" \"C:\\\\Users\\\\junk7\\\\KroolWorld\\\\HomePage\\\\index.html\")",
+      "Bash(dir /s /b \"C:\\\\Users\\\\junk7\\\\KroolWorld\\\\HomePage\\\\assets\\\\images\")",
       "WebFetch(domain:krool.github.io)",
+      "Bash(curl:*)",
       "WebFetch(domain:lpm24.github.io)",
-      "Bash(copy \"C:\\Users\\junk7\\AcecraftPrototype\\public\\icon-512.png\" \"C:\\Users\\junk7\\HomePage\\assets\\images\\roguecraft-icon.png\")",
-      "Bash(git commit -m \"$(cat <<''EOF''\nAdd retro visual enhancements\n\n- Real project screenshots/GIFs for all project cards\n  - Pokemon Blue Gacha: Multiple Pokemon sprites (Pikachu, Charizard, Mewtwo) with masterball\n  - Roguecraft: Space shooter icon with starfield\n  - SuperSmashTexty: Animated ASCII art terminal box\n  - Steam Screenshot Viewer: Steam-styled gradient with shine effect\n  - Typecast: YouTube thumbnail integration\n- Custom pixelated SVG cursors (pointer and hand)\n- Retro loading screen with animated progress bar\n- Film grain/noise overlay effect\n- Custom K-shaped favicon\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git commit:*)",
-      "WebFetch(domain:api.github.com)"
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
