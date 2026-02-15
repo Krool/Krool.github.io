@@ -64,6 +64,7 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 body {
@@ -101,6 +102,60 @@ ul {
 img {
     max-width: 100%;
     display: block;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Skip navigation link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    z-index: 10002;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus visible styles */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--accent-light);
+}
+
+/* Noscript fallback — ensure content is visible without JS */
+.section-title,
+.project-card {
+    opacity: 1;
+    transform: none;
 }
 
 /* Utility Classes */
@@ -144,7 +199,8 @@ img {
 }
 
 .btn-primary:hover {
-    background: #333;
+    background: var(--accent);
+    color: #fff;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
@@ -193,6 +249,8 @@ img {
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
     cursor: pointer;
     color: var(--text-secondary);
     display: flex;
@@ -305,11 +363,6 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     gap: 1.5rem;
 }
 
-/* Large featured cards span full width on first row */
-.bento-grid .card-large {
-    grid-column: span 1;
-}
-
 /* ============================================
    PROJECT CARDS
    ============================================ */
@@ -335,10 +388,6 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.card-large .project-image {
-    height: 240px;
 }
 
 /* ============================================
@@ -449,16 +498,16 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
    ANIMATIONS
    ============================================ */
 
-/* Scroll animations */
-.section-title,
-.project-card {
+/* Scroll animations — only when JS is active */
+.js-loaded .section-title,
+.js-loaded .project-card {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.section-title.visible,
-.project-card.visible {
+.js-loaded .section-title.visible,
+.js-loaded .project-card.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -477,10 +526,6 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     .bento-grid {
         grid-template-columns: 1fr;
     }
-
-    .card-large .project-image {
-        height: 200px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -495,7 +540,8 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        transition: right var(--transition);
+        transition: right 0.3s ease-out;
+        z-index: 10001;
     }
 
     .theme-toggle {
@@ -555,7 +601,10 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     }
 
     .link {
-        padding: 0.5rem 0;
+        padding: 0.75rem 0;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
     }
 }
 

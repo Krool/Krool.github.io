@@ -3,6 +3,9 @@
 // Clean, purposeful interactions only
 // ============================================
 
+// Mark JS as loaded for progressive enhancement
+document.body.classList.add('js-loaded');
+
 // Theme Toggle (dark mode default)
 const themeToggle = document.getElementById('themeToggle');
 const storedTheme = localStorage.getItem('theme');
@@ -24,18 +27,30 @@ if (themeToggle) {
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
+function closeMobileMenu() {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+}
+
 if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('active');
         navToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     // Close mobile menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
+        link.addEventListener('click', () => closeMobileMenu());
+    });
+
+    // Close mobile menu with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            closeMobileMenu();
+            navToggle.focus();
+        }
     });
 }
 
@@ -76,7 +91,8 @@ document.querySelectorAll('.section-title, .project-card').forEach(el => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = href === '#' ? document.body : document.querySelector(href);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',

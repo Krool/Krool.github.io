@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Exploring the frontier of AI-assisted game development. Play browser games, use dev tools, and see what's possible with AI collaboration.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;">
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://krool.github.io/">
     <meta property="og:title" content="Krool World | AI-Assisted Game Dev">
     <meta property="og:description" content="Exploring the frontier of AI-assisted game development. Play browser games, use dev tools, and see what's possible with AI collaboration.">
-    <meta property="og:image" content="https://krool.github.io/assets/images/og-preview.png">
+    <meta property="og:image" content="https://krool.github.io/assets/images/roguecraft-preview.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Krool World | AI-Assisted Game Dev">
     <meta name="twitter:description" content="Exploring the frontier of AI-assisted game development. Play browser games, use dev tools, and see what's possible with AI collaboration.">
@@ -21,6 +22,40 @@
         gtag('js', new Date());
         gtag('config', 'G-SXG8M67HPV');
     </script>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Krool",
+            "url": "https://krool.github.io/",
+            "sameAs": ["https://github.com/Krool"],
+            "knowsAbout": ["Game Development", "AI-Assisted Development", "Web Development"],
+            "makesOffer": [
+                {
+                    "@type": "CreativeWork",
+                    "name": "Roguecraft",
+                    "url": "https://krool.github.io/AcecraftPrototype/",
+                    "description": "A vertical roguelike space shooter built for mobile web"
+                },
+                {
+                    "@type": "CreativeWork",
+                    "name": "SuperSmashTexty",
+                    "url": "https://lpm24.github.io/SuperSmashTexty/",
+                    "description": "A browser-based roguelike arena game with ASCII aesthetics"
+                },
+                {
+                    "@type": "CreativeWork",
+                    "name": "Pokemon Blue Gacha",
+                    "url": "https://krool.github.io/PokemonBlueGacha/",
+                    "description": "A browser-based gacha collection game featuring all 151 Gen 1 Pokemon"
+                }
+            ]
+        }
+    }
+    </script>
     <title>Krool | AI Game Dev</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,9 +64,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
+    <a href="#games" class="skip-link">Skip to content</a>
+
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#" class="logo">Krool World</a>
+            <a href="#games" class="logo">Krool World</a>
             <ul class="nav-links">
                 <li><a href="#games">Games</a></li>
                 <li><a href="#tools">Tools</a></li>
@@ -46,7 +83,7 @@
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
             </button>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -54,14 +91,17 @@
         </div>
     </nav>
 
+    <main>
+    <h1 class="sr-only">Krool World — AI-Assisted Game Development Portfolio</h1>
+
     <section id="games" class="section section-first">
         <div class="container">
             <h2 class="section-title">Games</h2>
             <div class="bento-grid">
 
                 <!-- 1. Roguecraft - Featured Large -->
-                <article class="project-card card-large">
-                    <div class="project-image roguecraft"></div>
+                <article class="project-card">
+                    <div class="project-image roguecraft" role="img" aria-label="Roguecraft game screenshot"></div>
                     <div class="project-content">
                         <h3>Roguecraft</h3>
                         <p>A vertical roguelike space shooter built for mobile web. Features 20+ enemy types, 20 weapons across 5 elements, 19 playable characters, and 26 weapon evolutions. Auto-fire combat with touch controls.</p>
@@ -73,8 +113,8 @@
                 </article>
 
                 <!-- 2. SuperSmashTexty - Featured Large -->
-                <article class="project-card card-large">
-                    <div class="project-image smashtexty"></div>
+                <article class="project-card">
+                    <div class="project-image smashtexty" role="img" aria-label="SuperSmashTexty game screenshot"></div>
                     <div class="project-content">
                         <h3>SuperSmashTexty</h3>
                         <p>A browser-based roguelike arena game with ASCII aesthetics. Fast-paced combat, procedurally generated levels, roguelike upgrades, and up to 4-player co-op via P2P networking. Collab with lpm24.</p>
@@ -87,7 +127,7 @@
 
                 <!-- 3. Typecast -->
                 <article class="project-card">
-                    <div class="project-image typecast" style="background-image: url('assets/images/typecast-thumb.jpg');"></div>
+                    <div class="project-image typecast" role="img" aria-label="Typecast game screenshot"></div>
                     <div class="project-content">
                         <h3>Typecast</h3>
                         <p>A cooperative typing game with AI-generated D&D narratives. Type falling words before they hit the bottom, featuring 4-player co-op, class-based gameplay, and dynamic stories powered by Unity Sentis GPT-2.</p>
@@ -100,7 +140,7 @@
 
                 <!-- 4. Pokemon Blue Gacha -->
                 <article class="project-card">
-                    <div class="project-image pokemon"></div>
+                    <div class="project-image pokemon" role="img" aria-label="Pokemon Blue Gacha game screenshot"></div>
                     <div class="project-content">
                         <h3>Pokemon Blue Gacha</h3>
                         <p>A browser-based gacha collection game featuring all 151 Gen 1 Pokemon plus 79 classic items. Four gacha machines, complete Pokedex, weighted roll systems, and persistent saves.</p>
@@ -122,7 +162,7 @@
 
                 <!-- 1. Fantasy Football Analyzer -->
                 <article class="project-card">
-                    <div class="project-image fantasy-football"></div>
+                    <div class="project-image fantasy-football" role="img" aria-label="Fantasy Football Analyzer screenshot"></div>
                     <div class="project-content">
                         <h3>Fantasy Football Analyzer</h3>
                         <p>A fantasy football league analyzer supporting ESPN and Sleeper platforms. Features draft grading, waiver wire analysis, team roster cards, and real-time league data integration.</p>
@@ -135,7 +175,7 @@
 
                 <!-- 2. Car Compare -->
                 <article class="project-card">
-                    <div class="project-image car-compare"></div>
+                    <div class="project-image car-compare" role="img" aria-label="Car Compare tool screenshot"></div>
                     <div class="project-content">
                         <h3>Car Compare</h3>
                         <p>A car comparison tool to help find your next vehicle. Filter by price, fuel type, body style, and features. Set a baseline car and compare specs side-by-side.</p>
@@ -148,7 +188,7 @@
 
                 <!-- 3. Travel Agent Zero -->
                 <article class="project-card">
-                    <div class="project-image travel-agent"></div>
+                    <div class="project-image travel-agent" role="img" aria-label="Travel Agent Zero screenshot"></div>
                     <div class="project-content">
                         <h3>Travel Agent Zero</h3>
                         <p>A retro-futuristic travel planning companion. Browse destinations, plan trips, and organize itineraries with a vintage-inspired aesthetic.</p>
@@ -161,7 +201,7 @@
 
                 <!-- 4. Steam Screenshot Viewer -->
                 <article class="project-card">
-                    <div class="project-image screenshot"></div>
+                    <div class="project-image screenshot" role="img" aria-label="Steam Screenshot Viewer screenshot"></div>
                     <div class="project-content">
                         <h3>Steam Screenshot Viewer</h3>
                         <p>A desktop app to view and organize all your Steam screenshots in one place. Grid layout display, automatic game categorization, and preview panel with metadata.</p>
@@ -175,10 +215,11 @@
             </div>
         </div>
     </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Krool. All rights reserved.</p>
+            <p>&copy; 2026 Krool. All rights reserved.</p>
         </div>
     </footer>
 
