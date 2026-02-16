@@ -108,30 +108,46 @@ sections.forEach(s => sectionObserver.observe(s));
 
 // CSS scroll-behavior: smooth handles anchor scrolling natively
 
-// Video card hover-to-play
+// Video card hover-to-play (cut last 1s to hide recording UI)
 document.querySelectorAll('.has-video').forEach(card => {
     const video = card.querySelector('.project-video');
     if (!video) return;
 
-    card.addEventListener('mouseenter', () => {
-        video.play().catch(() => {});
-    });
-    card.addEventListener('mouseleave', () => {
-        video.pause();
-        video.currentTime = 0;
+    const TRIM_END = 1; // seconds to cut from end
+
+    // Loop early to skip last second
+    video.addEventListener('timeupdate', () => {
+        if (video.duration && video.currentTime >= video.duration - TRIM_END) {
+            video.currentTime = 0;
+        }
     });
 
-    // Touch support: tap to toggle play
-    card.addEventListener('touchstart', (e) => {
+    function startVideo() {
+        // Preload then play
+        if (video.preload === 'none') video.preload = 'auto';
+        video.play().catch(() => {});
+    }
+
+    function stopVideo() {
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    card.addEventListener('mouseenter', startVideo);
+    card.addEventListener('mouseleave', stopVideo);
+
+    // Touch: tap card image area to toggle
+    card.querySelector('.project-image').addEventListener('click', (e) => {
+        // Don't interfere with links
+        if (e.target.closest('a')) return;
         if (card.classList.contains('touch-play')) {
             card.classList.remove('touch-play');
-            video.pause();
-            video.currentTime = 0;
+            stopVideo();
         } else {
             card.classList.add('touch-play');
-            video.play().catch(() => {});
+            startVideo();
         }
-    }, { passive: true });
+    });
 });
 
 // ============================================
@@ -437,7 +453,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         el.innerHTML = lines.join('\n');
     }
 
-    function update() {
+    function step() {
         tick++;
 
         creatures.forEach(c => {
@@ -496,9 +512,27 @@ document.querySelectorAll('.has-video').forEach(card => {
                 }
             }
         }
+    }
 
+    // Throttled loop at ~15fps + pause when off-screen
+    const FPS = 15;
+    const FRAME_MS = 1000 / FPS;
+    let lastFrame = 0;
+    let visible = true;
+
+    // Pause rendering when tank scrolls out of view
+    const tankVis = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+    }, { threshold: 0 });
+    tankVis.observe(el);
+
+    function loop(now) {
+        requestAnimationFrame(loop);
+        if (!visible) return;
+        if (now - lastFrame < FRAME_MS) return;
+        lastFrame = now;
+        step();
         render();
-        requestAnimationFrame(update);
     }
 
     init();
@@ -506,12 +540,13 @@ document.querySelectorAll('.has-video').forEach(card => {
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => init(), 200);
+        resizeTimer = setTimeout(() => { init(); render(); }, 200);
     });
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         render();
     } else {
-        update();
+        render();
+        requestAnimationFrame(loop);
     }
 })();
