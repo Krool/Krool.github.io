@@ -135,42 +135,60 @@ document.querySelectorAll('.has-video').forEach(card => {
 });
 
 // ============================================
-// ASCII FISH TANK
+// ASCII FISH TANK (with color)
 // ============================================
 (function() {
     const el = document.getElementById('fishTank');
     if (!el) return;
 
-    // Dynamic width based on container
+    // Measure character width to compute columns
     function getWidth() {
-        const ch = parseFloat(getComputedStyle(el).fontSize) * 0.6;
-        return Math.floor(el.parentElement.clientWidth / ch);
+        const span = document.createElement('span');
+        span.style.cssText = 'font:inherit;visibility:hidden;position:absolute;white-space:pre;';
+        span.textContent = 'M';
+        el.appendChild(span);
+        const cw = span.getBoundingClientRect().width;
+        span.remove();
+        const pw = el.parentElement.clientWidth;
+        return Math.floor(pw / cw);
     }
 
-    let W = Math.max(40, Math.min(getWidth(), 120));
-    const H = 14;
+    let W, H;
     const SP = ' ';
-
     const title = ' krool.world ';
 
-    // --- Creature definitions ---
-    // Fish
+    // Color tags for spans
+    const C = {
+        border: 't-border',
+        title:  't-title',
+        fish1:  't-fish1',
+        fish2:  't-fish2',
+        fish3:  't-fish3',
+        shark:  't-shark',
+        crab:   't-crab',
+        jelly:  't-jelly',
+        eel:    't-eel',
+        weed:   't-weed',
+        sand:   't-sand',
+        star:   't-star',
+        chest:  't-chest',
+        bubble: 't-bubble'
+    };
+
+    const FISH_COLORS = [C.fish1, C.fish2, C.fish3];
+
+    // Fish shapes
     const FISH_R = ['><>', '><))°>', '>°>', '=>>'];
     const FISH_L = ['<><', '<°((><', '<°<', '<<='];
-    // Jellyfish frames (2-tall, animates tentacles)
     const JELLY_A = [' oo', '/||\\'];
     const JELLY_B = [' oo', '\\||/'];
-    // Shark (right only, patrols)
     const SHARK_R = '|\\><))))))>';
     const SHARK_L = '<((((((><|/';
 
-    // --- State arrays ---
     const creatures = [];
     const bubbles = [];
     const weeds = [];
-    const stars = []; // starfish on the floor
-
-    // Treasure chest (static decoration)
+    const stars = [];
     const chest = { x: 0 };
 
     function init() {
@@ -179,10 +197,10 @@ document.querySelectorAll('.has-video').forEach(card => {
         weeds.length = 0;
         stars.length = 0;
 
-        W = Math.max(40, Math.min(getWidth(), 120));
+        W = Math.max(30, Math.min(getWidth(), 120));
+        H = W < 40 ? 11 : 14;
 
-        // Seaweed
-        const numWeeds = Math.max(4, Math.floor(W / 12));
+        const numWeeds = Math.max(3, Math.floor(W / 14));
         for (let i = 0; i < numWeeds; i++) {
             weeds.push({
                 x: 3 + Math.floor(Math.random() * (W - 6)),
@@ -191,34 +209,24 @@ document.querySelectorAll('.has-video').forEach(card => {
             });
         }
 
-        // Starfish on floor
         const numStars = Math.max(1, Math.floor(W / 25));
         for (let i = 0; i < numStars; i++) {
             stars.push({ x: 5 + Math.floor(Math.random() * (W - 10)) });
         }
 
-        // Treasure chest
-        chest.x = Math.floor(W * 0.7);
+        chest.x = Math.floor(W * 0.65);
 
-        // Fish (swim across)
-        const numFish = Math.max(3, Math.floor(W / 16));
+        const numFish = Math.max(2, Math.floor(W / 18));
         for (let i = 0; i < numFish; i++) spawnFish(true);
 
-        // One crab
         spawnCrab();
-
-        // One jellyfish
         spawnJelly(true);
-
-        // One shark (if wide enough)
-        if (W >= 60) spawnShark(true);
-
-        // One eel
-        spawnEel(true);
+        if (W >= 50) spawnShark(true);
+        if (W >= 35) spawnEel(true);
     }
 
     function randRow(top, bot) {
-        return top + Math.floor(Math.random() * (bot - top));
+        return top + Math.floor(Math.random() * Math.max(1, bot - top));
     }
 
     function spawnFish(scatter) {
@@ -227,6 +235,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         const shape = shapes[Math.floor(Math.random() * shapes.length)];
         creatures.push({
             type: 'fish', shape, dir,
+            color: FISH_COLORS[Math.floor(Math.random() * FISH_COLORS.length)],
             x: scatter ? Math.floor(Math.random() * W) : (dir === 1 ? -shape.length : W),
             y: randRow(1, H - 4),
             speed: 0.03 + Math.random() * 0.05
@@ -237,10 +246,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         creatures.push({
             type: 'crab',
             x: Math.floor(W * 0.3),
-            y: H - 3,
-            dir: 1,
-            speed: 0.02,
-            frame: 0
+            y: H - 3, dir: 1, speed: 0.02
         });
     }
 
@@ -248,7 +254,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         creatures.push({
             type: 'jelly',
             x: scatter ? 5 + Math.floor(Math.random() * (W - 10)) : 5 + Math.floor(Math.random() * (W - 10)),
-            y: randRow(2, H - 6),
+            y: randRow(2, Math.max(3, H - 6)),
             phase: Math.random() * Math.PI * 2,
             drift: (Math.random() - 0.5) * 0.01
         });
@@ -260,7 +266,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         creatures.push({
             type: 'shark', shape, dir,
             x: scatter ? Math.floor(Math.random() * (W - shape.length)) : (dir === 1 ? -shape.length : W),
-            y: randRow(1, 3),
+            y: randRow(1, Math.min(3, H - 4)),
             speed: 0.04 + Math.random() * 0.02
         });
     }
@@ -270,7 +276,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         creatures.push({
             type: 'eel', dir,
             x: scatter ? Math.floor(Math.random() * W) : (dir === 1 ? -12 : W),
-            y: randRow(H - 5, H - 3),
+            y: randRow(Math.max(1, H - 5), H - 3),
             speed: 0.02 + Math.random() * 0.02,
             phase: Math.random() * Math.PI * 2
         });
@@ -278,26 +284,43 @@ document.querySelectorAll('.has-video').forEach(card => {
 
     let tick = 0;
 
-    function stamp(grid, row, col, str) {
+    // Grid stores {ch, cls} per cell
+    function makeGrid() {
+        const grid = [];
+        for (let r = 0; r < H; r++) {
+            grid[r] = [];
+            for (let c = 0; c < W; c++) {
+                grid[r][c] = { ch: SP, cls: '' };
+            }
+        }
+        return grid;
+    }
+
+    function stamp(grid, row, col, str, cls) {
         for (let i = 0; i < str.length; i++) {
             const c = col + i;
             if (c >= 1 && c < W - 1 && row >= 1 && row < H - 1) {
-                grid[row][c] = str[i];
+                grid[row][c] = { ch: str[i], cls: cls };
             }
         }
     }
 
+    function setCell(grid, row, col, ch, cls) {
+        if (col >= 1 && col < W - 1 && row >= 1 && row < H - 1) {
+            grid[row][col] = { ch, cls };
+        }
+    }
+
+    // HTML-escape for safety
+    const esc = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
     function render() {
-        const grid = [];
-        for (let r = 0; r < H; r++) grid[r] = new Array(W).fill(SP);
-
+        const grid = makeGrid();
         const t = tick * 0.015;
-
-        // --- Decorations ---
 
         // Sand
         for (let c = 1; c < W - 1; c++) {
-            grid[H - 2][c] = ['.',',',' ','.',',','_','.'][c % 7];
+            grid[H - 2][c] = { ch: ['.',',',' ','.',',','_','.'][c % 7], cls: C.sand };
         }
 
         // Seaweed
@@ -307,95 +330,108 @@ document.querySelectorAll('.has-video').forEach(card => {
                 const row = H - 3 - i;
                 const offset = i > 0 ? Math.round(sway * (i * 0.4)) : 0;
                 const col = w.x + offset;
-                if (row >= 1 && row < H - 1 && col >= 1 && col < W - 1) {
-                    grid[row][col] = i % 2 === 0 ? ')' : '(';
-                }
+                setCell(grid, row, col, i % 2 === 0 ? ')' : '(', C.weed);
             }
         });
 
         // Starfish
         stars.forEach(s => {
-            if (s.x >= 1 && s.x < W - 1) {
-                grid[H - 3][s.x] = '*';
-            }
+            setCell(grid, H - 3, s.x, '*', C.star);
         });
 
-        // Treasure chest on the floor
+        // Treasure chest
         if (chest.x + 4 < W - 1 && chest.x >= 1) {
-            stamp(grid, H - 4, chest.x, '____');
-            stamp(grid, H - 3, chest.x, '|$$|');
+            stamp(grid, H - 4, chest.x, '____', C.chest);
+            stamp(grid, H - 3, chest.x, '|$$|', C.chest);
         }
 
-        // --- Bubbles ---
+        // Bubbles
         bubbles.forEach(b => {
-            const col = Math.round(b.x);
-            const row = Math.round(b.y);
-            if (row >= 1 && row < H - 2 && col >= 1 && col < W - 1) {
-                grid[row][col] = b.big ? 'O' : 'o';
-            }
+            setCell(grid, Math.round(b.y), Math.round(b.x), b.big ? 'O' : 'o', C.bubble);
         });
 
-        // --- Creatures ---
+        // Creatures
         creatures.forEach(c => {
             const cx = Math.round(c.x);
 
-            if (c.type === 'fish' || c.type === 'shark') {
-                stamp(grid, c.y, cx, c.shape);
+            if (c.type === 'fish') {
+                stamp(grid, c.y, cx, c.shape, c.color);
+            }
+
+            if (c.type === 'shark') {
+                stamp(grid, c.y, cx, c.shape, C.shark);
             }
 
             if (c.type === 'crab') {
-                // Crab alternates claws
                 const frame = Math.floor(tick * 0.03) % 2;
-                const crab = frame === 0 ? 'V(..)V' : 'v(..)v';
-                stamp(grid, c.y, cx, crab);
+                stamp(grid, c.y, cx, frame === 0 ? 'V(..)V' : 'v(..)v', C.crab);
             }
 
             if (c.type === 'jelly') {
                 const frame = Math.floor(tick * 0.02) % 2;
                 const lines = frame === 0 ? JELLY_A : JELLY_B;
-                lines.forEach((ln, i) => stamp(grid, Math.round(c.y) + i, cx, ln));
+                lines.forEach((ln, i) => stamp(grid, Math.round(c.y) + i, cx, ln, C.jelly));
             }
 
             if (c.type === 'eel') {
-                // Eel: sinuous body
-                const len = 10;
-                const eelChar = c.dir === 1 ? '~' : '~';
-                const headR = ':>';
-                const headL = '<:';
+                const len = W < 40 ? 6 : 10;
                 for (let i = 0; i < len; i++) {
                     const wobble = Math.round(Math.sin(t * 3 + i * 0.8 + c.phase) * 0.6);
                     const col = cx + (c.dir === 1 ? i : -i);
                     const row = c.y + wobble;
-                    if (col >= 1 && col < W - 1 && row >= 1 && row < H - 2) {
-                        grid[row][col] = eelChar;
-                    }
+                    setCell(grid, row, col, '~', C.eel);
                 }
-                // Head
                 const headX = c.dir === 1 ? cx + len : cx - len;
-                const head = c.dir === 1 ? headR : headL;
-                stamp(grid, c.y, headX, head);
+                stamp(grid, c.y, headX, c.dir === 1 ? ':>' : '<:', C.eel);
             }
         });
 
-        // --- Border ---
-        const top = new Array(W).fill('~');
-        top[0] = '+';
-        top[W - 1] = '+';
+        // Border - top
+        for (let c = 0; c < W; c++) {
+            grid[0][c] = { ch: c === 0 || c === W - 1 ? '+' : '~', cls: C.border };
+        }
+        // Title
         const ts = Math.floor((W - title.length) / 2);
-        for (let i = 0; i < title.length; i++) top[ts + i] = title[i];
-        grid[0] = top;
-
-        const bot = new Array(W).fill('~');
-        bot[0] = '+';
-        bot[W - 1] = '+';
-        grid[H - 1] = bot;
-
+        for (let i = 0; i < title.length; i++) {
+            if (ts + i >= 0 && ts + i < W) {
+                grid[0][ts + i] = { ch: title[i], cls: C.title };
+            }
+        }
+        // Border - bottom
+        for (let c = 0; c < W; c++) {
+            grid[H - 1][c] = { ch: c === 0 || c === W - 1 ? '+' : '~', cls: C.border };
+        }
+        // Sides
         for (let r = 1; r < H - 1; r++) {
-            grid[r][0] = '|';
-            grid[r][W - 1] = '|';
+            grid[r][0] = { ch: '|', cls: C.border };
+            grid[r][W - 1] = { ch: '|', cls: C.border };
         }
 
-        el.textContent = grid.map(row => row.join('')).join('\n');
+        // Build HTML — group consecutive same-class cells into spans
+        const lines = [];
+        for (let r = 0; r < H; r++) {
+            let line = '';
+            let runCls = null;
+            let runChars = '';
+            for (let c = 0; c < W; c++) {
+                const cell = grid[r][c];
+                if (cell.cls === runCls) {
+                    runChars += cell.ch;
+                } else {
+                    if (runChars) {
+                        line += runCls ? `<span class="${runCls}">${esc(runChars)}</span>` : esc(runChars);
+                    }
+                    runCls = cell.cls;
+                    runChars = cell.ch;
+                }
+            }
+            if (runChars) {
+                line += runCls ? `<span class="${runCls}">${esc(runChars)}</span>` : esc(runChars);
+            }
+            lines.push(line);
+        }
+
+        el.innerHTML = lines.join('\n');
     }
 
     function update() {
@@ -405,29 +441,22 @@ document.querySelectorAll('.has-video').forEach(card => {
             if (c.type === 'fish' || c.type === 'shark') {
                 c.x += c.speed * c.dir;
             }
-
             if (c.type === 'crab') {
                 c.x += c.speed * c.dir;
-                // Bounce off walls
                 if (c.x <= 2 || c.x >= W - 8) c.dir *= -1;
             }
-
             if (c.type === 'jelly') {
-                // Slow bob up and down, gentle horizontal drift
                 c.y += Math.sin(tick * 0.008 + c.phase) * 0.02;
                 c.x += c.drift;
-                // Gentle bounce
                 if (c.x <= 2 || c.x >= W - 6) c.drift *= -1;
                 if (c.y < 1) c.y = 1;
                 if (c.y > H - 5) c.y = H - 5;
             }
-
             if (c.type === 'eel') {
                 c.x += c.speed * c.dir;
             }
         });
 
-        // Spawn bubbles from fish/shark occasionally
         creatures.forEach(c => {
             if ((c.type === 'fish' || c.type === 'shark') && Math.random() < 0.004) {
                 const bx = c.dir === 1 ? Math.round(c.x) : Math.round(c.x + (c.shape ? c.shape.length : 3));
@@ -435,12 +464,10 @@ document.querySelectorAll('.has-video').forEach(card => {
             }
         });
 
-        // Treasure chest bubbles
         if (Math.random() < 0.008) {
             bubbles.push({ x: chest.x + 2, y: H - 5, big: false, drift: (Math.random() - 0.5) * 0.1 });
         }
 
-        // Move bubbles
         for (let i = bubbles.length - 1; i >= 0; i--) {
             const b = bubbles[i];
             b.y -= 0.03 + Math.random() * 0.02;
@@ -448,25 +475,21 @@ document.querySelectorAll('.has-video').forEach(card => {
             if (b.y < 1) bubbles.splice(i, 1);
         }
 
-        // Respawn creatures that leave the screen
         for (let i = creatures.length - 1; i >= 0; i--) {
             const c = creatures[i];
             if (c.type === 'fish') {
                 if ((c.dir === 1 && c.x > W + 5) || (c.dir === -1 && c.x < -(c.shape.length + 5))) {
-                    creatures.splice(i, 1);
-                    spawnFish(false);
+                    creatures.splice(i, 1); spawnFish(false);
                 }
             }
             if (c.type === 'shark') {
                 if ((c.dir === 1 && c.x > W + 5) || (c.dir === -1 && c.x < -(c.shape.length + 5))) {
-                    creatures.splice(i, 1);
-                    spawnShark(false);
+                    creatures.splice(i, 1); spawnShark(false);
                 }
             }
             if (c.type === 'eel') {
                 if ((c.dir === 1 && c.x > W + 15) || (c.dir === -1 && c.x < -15)) {
-                    creatures.splice(i, 1);
-                    spawnEel(false);
+                    creatures.splice(i, 1); spawnEel(false);
                 }
             }
         }
@@ -477,14 +500,12 @@ document.querySelectorAll('.has-video').forEach(card => {
 
     init();
 
-    // Resize handler
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => init(), 200);
     });
 
-    // Respect reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         render();
     } else {
