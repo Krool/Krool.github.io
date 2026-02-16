@@ -145,12 +145,15 @@ document.querySelectorAll('.has-video').forEach(card => {
     function getWidth() {
         const span = document.createElement('span');
         span.style.cssText = 'font:inherit;visibility:hidden;position:absolute;white-space:pre;';
-        span.textContent = 'M';
+        span.textContent = 'MMMMMMMMMM';
         el.appendChild(span);
-        const cw = span.getBoundingClientRect().width;
+        const cw = span.getBoundingClientRect().width / 10;
         span.remove();
-        const pw = el.parentElement.clientWidth;
-        return Math.floor(pw / cw);
+        // Use container width minus the container's horizontal padding
+        const style = getComputedStyle(el.parentElement);
+        const pad = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+        const pw = el.parentElement.clientWidth - pad;
+        return Math.floor(pw / cw) - 1;
     }
 
     let W, H;
