@@ -499,11 +499,8 @@ document.querySelectorAll('.has-video').forEach(card => {
         }
     }
 
-    // Throttled loop at ~15fps + pause when off-screen
-    const FPS = 15;
-    const FRAME_MS = 1000 / FPS;
-    let lastFrame = 0;
     let visible = true;
+    let lastW = 0;
 
     // Pause rendering when tank scrolls out of view
     const tankVis = new IntersectionObserver(([entry]) => {
@@ -511,21 +508,24 @@ document.querySelectorAll('.has-video').forEach(card => {
     }, { threshold: 0 });
     tankVis.observe(el);
 
-    function loop(now) {
+    function loop() {
         requestAnimationFrame(loop);
         if (!visible) return;
-        if (now - lastFrame < FRAME_MS) return;
-        lastFrame = now;
         step();
         render();
     }
 
     init();
+    lastW = W;
 
-    let resizeTimer;
+    // Only reinit if width actually changed (ignore mobile address bar resize)
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => { init(); render(); }, 200);
+        const newW = Math.max(30, Math.min(getWidth(), 120));
+        if (Math.abs(newW - lastW) > 2) {
+            lastW = newW;
+            init();
+            render();
+        }
     });
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
