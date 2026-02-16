@@ -108,6 +108,32 @@ sections.forEach(s => sectionObserver.observe(s));
 
 // CSS scroll-behavior: smooth handles anchor scrolling natively
 
+// Video card hover-to-play
+document.querySelectorAll('.has-video').forEach(card => {
+    const video = card.querySelector('.project-video');
+    if (!video) return;
+
+    card.addEventListener('mouseenter', () => {
+        video.play().catch(() => {});
+    });
+    card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+
+    // Touch support: tap to toggle play
+    card.addEventListener('touchstart', (e) => {
+        if (card.classList.contains('touch-play')) {
+            card.classList.remove('touch-play');
+            video.pause();
+            video.currentTime = 0;
+        } else {
+            card.classList.add('touch-play');
+            video.play().catch(() => {});
+        }
+    }, { passive: true });
+});
+
 // ============================================
 // ASCII FISH TANK
 // ============================================

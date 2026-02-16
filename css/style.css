@@ -424,6 +424,24 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-color: var(--bg-secondary);
 }
 
+/* Video overlay for animated cards */
+.project-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.has-video:hover .project-video,
+.has-video.touch-play .project-video {
+    opacity: 1;
+}
+
 /* ============================================
    PROJECT CARD VISUALS - Screenshots
    ============================================ */
@@ -477,7 +495,7 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
 }
 
 .project-image.dive-dude {
-    background-image: url('../assets/images/divedude-preview.png');
+    background-image: url('../assets/images/dive dude screenshot.png');
     background-size: cover;
     background-position: center;
 }
