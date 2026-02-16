@@ -482,6 +482,12 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-position: center;
 }
 
+.project-image.guild-leader {
+    background-image: url('../assets/images/guildleader-preview.png');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Project Content */
 .project-content {
     padding: 1.5rem;
