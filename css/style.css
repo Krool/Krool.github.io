@@ -506,6 +506,12 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-position: center;
 }
 
+.project-image.ascii-reef {
+    background-image: url('../assets/images/desktop aquarium screenshot.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .project-image.screenshot {
     background-image: url('../assets/images/screenshot-preview.png');
     background-size: cover;
