@@ -31,6 +31,7 @@ function closeMobileMenu() {
     navToggle.classList.remove('active');
     navLinks.classList.remove('active');
     navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
 }
 
 if (navToggle && navLinks) {
@@ -38,6 +39,7 @@ if (navToggle && navLinks) {
         const isOpen = navLinks.classList.toggle('active');
         navToggle.classList.toggle('active');
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.classList.toggle('menu-open', isOpen);
     });
 
     // Close mobile menu when clicking a link
@@ -78,26 +80,30 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Observe all animated elements
-document.querySelectorAll('.section-title, .project-card').forEach(el => {
+document.querySelectorAll('.hero-title, .hero-subtitle, .section-title, .project-card').forEach(el => {
     observer.observe(el);
 });
 
-// Smooth scroll for anchor links (fallback for older browsers)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-        const target = href === '#' ? document.body : document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+// Active nav link tracking
+const sections = document.querySelectorAll('.section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navAnchors.forEach(a => a.classList.remove('active'));
+            const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
         }
     });
-});
+}, { rootMargin: '-30% 0px -70% 0px' });
+
+sections.forEach(s => sectionObserver.observe(s));
+
+// CSS scroll-behavior: smooth handles anchor scrolling natively

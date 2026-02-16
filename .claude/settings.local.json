@@ -15,7 +15,18 @@
       "WebFetch(domain:krool.github.io)",
       "Bash(curl:*)",
       "WebFetch(domain:lpm24.github.io)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Skill(a11y-audit)",
+      "Skill(security-review)",
+      "Skill(ui-review)",
+      "Skill(responsive)",
+      "Skill(design-system)",
+      "Skill(explain-arch)",
+      "Skill(pre-deploy)",
+      "Skill(recommend-lib)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

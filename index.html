@@ -56,7 +56,9 @@
         }
     }
     </script>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode');</script>
     <title>Krool | AI Game Dev</title>
+    <link rel="canonical" href="https://krool.github.io/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,9 +94,15 @@
     </nav>
 
     <main>
-    <h1 class="sr-only">Krool World — AI-Assisted Game Development Portfolio</h1>
 
-    <section id="games" class="section section-first">
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+            <h1 id="hero-heading" class="hero-title">Krool World</h1>
+            <p class="hero-subtitle">Exploring the frontier of AI-assisted game development. Play browser games, use dev tools, and see what's possible with AI collaboration.</p>
+        </div>
+    </section>
+
+    <section id="games" class="section">
         <div class="container">
             <h2 class="section-title">Games</h2>
             <div class="bento-grid">
@@ -219,7 +227,15 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Krool. All rights reserved.</p>
+            <div class="footer-content">
+                <a href="#" class="footer-top" aria-label="Back to top">&uarr; Back to top</a>
+                <div class="footer-links">
+                    <a href="#games">Games</a>
+                    <a href="#tools">Tools</a>
+                    <a href="https://github.com/Krool" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+                <p>&copy; 2026 Krool. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
