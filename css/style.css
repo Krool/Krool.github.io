@@ -476,6 +476,12 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-position: center;
 }
 
+.project-image.dive-dude {
+    background-image: url('../assets/images/divedude-preview.png');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Project Content */
 .project-content {
     padding: 1.5rem;
