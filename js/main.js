@@ -108,46 +108,31 @@ sections.forEach(s => sectionObserver.observe(s));
 
 // CSS scroll-behavior: smooth handles anchor scrolling natively
 
-// Video card hover-to-play (cut last 1s to hide recording UI)
+// Video cards — autoplay when visible, pause when off-screen
 document.querySelectorAll('.has-video').forEach(card => {
     const video = card.querySelector('.project-video');
     if (!video) return;
 
-    const TRIM_END = 1; // seconds to cut from end
+    const TRIM_END = 1;
 
-    // Loop early to skip last second
     video.addEventListener('timeupdate', () => {
         if (video.duration && video.currentTime >= video.duration - TRIM_END) {
             video.currentTime = 0;
         }
     });
 
-    function startVideo() {
-        // Preload then play
-        if (video.preload === 'none') video.preload = 'auto';
-        video.play().catch(() => {});
-    }
-
-    function stopVideo() {
-        video.pause();
-        video.currentTime = 0;
-    }
-
-    card.addEventListener('mouseenter', startVideo);
-    card.addEventListener('mouseleave', stopVideo);
-
-    // Touch: tap card image area to toggle
-    card.querySelector('.project-image').addEventListener('click', (e) => {
-        // Don't interfere with links
-        if (e.target.closest('a')) return;
-        if (card.classList.contains('touch-play')) {
-            card.classList.remove('touch-play');
-            stopVideo();
-        } else {
+    const videoObs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            if (video.preload === 'none') video.preload = 'auto';
             card.classList.add('touch-play');
-            startVideo();
+            video.play().catch(() => {});
+        } else {
+            card.classList.remove('touch-play');
+            video.pause();
         }
-    });
+    }, { threshold: 0.4 });
+
+    videoObs.observe(card);
 });
 
 // ============================================
