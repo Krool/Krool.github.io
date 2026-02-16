@@ -86,7 +86,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe all animated elements
-document.querySelectorAll('.hero-title, .hero-subtitle, .section-title, .project-card').forEach(el => {
+document.querySelectorAll('.hud, .section-title, .project-card').forEach(el => {
     observer.observe(el);
 });
 
