@@ -115,64 +115,171 @@ sections.forEach(s => sectionObserver.observe(s));
     const el = document.getElementById('fishTank');
     if (!el) return;
 
-    const W = 72;
-    const H = 12;
-    const EMPTY = ' ';
+    // Dynamic width based on container
+    function getWidth() {
+        const ch = parseFloat(getComputedStyle(el).fontSize) * 0.6;
+        return Math.floor(el.parentElement.clientWidth / ch);
+    }
 
-    // Fish shapes: [body, direction]
-    const FISH_R = ['><>', '><))°>', '>°>', '>=>'];
-    const FISH_L = ['<><', '<°((><', '<°<', '<=<'];
+    let W = Math.max(40, Math.min(getWidth(), 120));
+    const H = 14;
+    const SP = ' ';
 
-    const fish = [];
+    const title = ' krool.world ';
+
+    // --- Creature definitions ---
+    // Fish
+    const FISH_R = ['><>', '><))°>', '>°>', '=>>'];
+    const FISH_L = ['<><', '<°((><', '<°<', '<<='];
+    // Jellyfish frames (2-tall, animates tentacles)
+    const JELLY_A = [' oo', '/||\\'];
+    const JELLY_B = [' oo', '\\||/'];
+    // Shark (right only, patrols)
+    const SHARK_R = '|\\><))))))>';
+    const SHARK_L = '<((((((><|/';
+
+    // --- State arrays ---
+    const creatures = [];
     const bubbles = [];
-
-    // Seaweed anchors along the bottom
     const weeds = [];
-    for (let i = 0; i < 6; i++) {
-        weeds.push({
-            x: 4 + Math.floor(Math.random() * (W - 8)),
+    const stars = []; // starfish on the floor
+
+    // Treasure chest (static decoration)
+    const chest = { x: 0 };
+
+    function init() {
+        creatures.length = 0;
+        bubbles.length = 0;
+        weeds.length = 0;
+        stars.length = 0;
+
+        W = Math.max(40, Math.min(getWidth(), 120));
+
+        // Seaweed
+        const numWeeds = Math.max(4, Math.floor(W / 12));
+        for (let i = 0; i < numWeeds; i++) {
+            weeds.push({
+                x: 3 + Math.floor(Math.random() * (W - 6)),
+                height: 2 + Math.floor(Math.random() * 3),
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+
+        // Starfish on floor
+        const numStars = Math.max(1, Math.floor(W / 25));
+        for (let i = 0; i < numStars; i++) {
+            stars.push({ x: 5 + Math.floor(Math.random() * (W - 10)) });
+        }
+
+        // Treasure chest
+        chest.x = Math.floor(W * 0.7);
+
+        // Fish (swim across)
+        const numFish = Math.max(3, Math.floor(W / 16));
+        for (let i = 0; i < numFish; i++) spawnFish(true);
+
+        // One crab
+        spawnCrab();
+
+        // One jellyfish
+        spawnJelly(true);
+
+        // One shark (if wide enough)
+        if (W >= 60) spawnShark(true);
+
+        // One eel
+        spawnEel(true);
+    }
+
+    function randRow(top, bot) {
+        return top + Math.floor(Math.random() * (bot - top));
+    }
+
+    function spawnFish(scatter) {
+        const dir = Math.random() < 0.5 ? 1 : -1;
+        const shapes = dir === 1 ? FISH_R : FISH_L;
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        creatures.push({
+            type: 'fish', shape, dir,
+            x: scatter ? Math.floor(Math.random() * W) : (dir === 1 ? -shape.length : W),
+            y: randRow(1, H - 4),
+            speed: 0.03 + Math.random() * 0.05
+        });
+    }
+
+    function spawnCrab() {
+        creatures.push({
+            type: 'crab',
+            x: Math.floor(W * 0.3),
+            y: H - 3,
+            dir: 1,
+            speed: 0.02,
+            frame: 0
+        });
+    }
+
+    function spawnJelly(scatter) {
+        creatures.push({
+            type: 'jelly',
+            x: scatter ? 5 + Math.floor(Math.random() * (W - 10)) : 5 + Math.floor(Math.random() * (W - 10)),
+            y: randRow(2, H - 6),
+            phase: Math.random() * Math.PI * 2,
+            drift: (Math.random() - 0.5) * 0.01
+        });
+    }
+
+    function spawnShark(scatter) {
+        const dir = Math.random() < 0.5 ? 1 : -1;
+        const shape = dir === 1 ? SHARK_R : SHARK_L;
+        creatures.push({
+            type: 'shark', shape, dir,
+            x: scatter ? Math.floor(Math.random() * (W - shape.length)) : (dir === 1 ? -shape.length : W),
+            y: randRow(1, 3),
+            speed: 0.04 + Math.random() * 0.02
+        });
+    }
+
+    function spawnEel(scatter) {
+        const dir = Math.random() < 0.5 ? 1 : -1;
+        creatures.push({
+            type: 'eel', dir,
+            x: scatter ? Math.floor(Math.random() * W) : (dir === 1 ? -12 : W),
+            y: randRow(H - 5, H - 3),
+            speed: 0.02 + Math.random() * 0.02,
             phase: Math.random() * Math.PI * 2
         });
     }
 
-    // Spawn fish
-    for (let i = 0; i < 6; i++) {
-        spawnFish();
-    }
-
-    function spawnFish() {
-        const dir = Math.random() < 0.5 ? 1 : -1;
-        const shapes = dir === 1 ? FISH_R : FISH_L;
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        fish.push({
-            x: dir === 1 ? -shape.length : W,
-            y: 1 + Math.floor(Math.random() * (H - 3)),
-            dir: dir,
-            speed: 0.15 + Math.random() * 0.25,
-            shape: shape
-        });
-    }
-
-    // Title text centered on top border
-    const title = ' krool.world ';
-
     let tick = 0;
 
+    function stamp(grid, row, col, str) {
+        for (let i = 0; i < str.length; i++) {
+            const c = col + i;
+            if (c >= 1 && c < W - 1 && row >= 1 && row < H - 1) {
+                grid[row][c] = str[i];
+            }
+        }
+    }
+
     function render() {
-        // Build grid
         const grid = [];
-        for (let r = 0; r < H; r++) {
-            grid[r] = new Array(W).fill(EMPTY);
+        for (let r = 0; r < H; r++) grid[r] = new Array(W).fill(SP);
+
+        const t = tick * 0.015;
+
+        // --- Decorations ---
+
+        // Sand
+        for (let c = 1; c < W - 1; c++) {
+            grid[H - 2][c] = ['.',',',' ','.',',','_','.'][c % 7];
         }
 
-        // Draw seaweed (bottom 2-3 chars, swaying)
-        const t = tick * 0.04;
+        // Seaweed
         weeds.forEach(w => {
-            const sway = Math.sin(t + w.phase);
-            const height = 2 + Math.floor(Math.abs(Math.sin(w.phase * 2)) * 2);
-            for (let i = 0; i < height; i++) {
-                const row = H - 2 - i;
-                const offset = i > 0 ? Math.round(sway * (i * 0.5)) : 0;
+            const sway = Math.sin(t * 2 + w.phase);
+            for (let i = 0; i < w.height; i++) {
+                const row = H - 3 - i;
+                const offset = i > 0 ? Math.round(sway * (i * 0.4)) : 0;
                 const col = w.x + offset;
                 if (row >= 1 && row < H - 1 && col >= 1 && col < W - 1) {
                     grid[row][col] = i % 2 === 0 ? ')' : '(';
@@ -180,50 +287,83 @@ sections.forEach(s => sectionObserver.observe(s));
             }
         });
 
-        // Sand/gravel bottom
-        for (let c = 1; c < W - 1; c++) {
-            grid[H - 2][c] = grid[H - 2][c] !== EMPTY ? grid[H - 2][c] : ['.',',','.','_','.'][c % 5];
+        // Starfish
+        stars.forEach(s => {
+            if (s.x >= 1 && s.x < W - 1) {
+                grid[H - 3][s.x] = '*';
+            }
+        });
+
+        // Treasure chest on the floor
+        if (chest.x + 4 < W - 1 && chest.x >= 1) {
+            stamp(grid, H - 4, chest.x, '____');
+            stamp(grid, H - 3, chest.x, '|$$|');
         }
 
-        // Draw bubbles
+        // --- Bubbles ---
         bubbles.forEach(b => {
             const col = Math.round(b.x);
             const row = Math.round(b.y);
-            if (row >= 1 && row < H - 1 && col >= 1 && col < W - 1) {
-                grid[row][col] = b.size > 0.5 ? 'O' : 'o';
+            if (row >= 1 && row < H - 2 && col >= 1 && col < W - 1) {
+                grid[row][col] = b.big ? 'O' : 'o';
             }
         });
 
-        // Draw fish
-        fish.forEach(f => {
-            const startX = Math.round(f.x);
-            for (let i = 0; i < f.shape.length; i++) {
-                const col = startX + i;
-                if (col >= 1 && col < W - 1 && f.y >= 1 && f.y < H - 2) {
-                    grid[f.y][col] = f.shape[i];
+        // --- Creatures ---
+        creatures.forEach(c => {
+            const cx = Math.round(c.x);
+
+            if (c.type === 'fish' || c.type === 'shark') {
+                stamp(grid, c.y, cx, c.shape);
+            }
+
+            if (c.type === 'crab') {
+                // Crab alternates claws
+                const frame = Math.floor(tick * 0.03) % 2;
+                const crab = frame === 0 ? 'V(..)V' : 'v(..)v';
+                stamp(grid, c.y, cx, crab);
+            }
+
+            if (c.type === 'jelly') {
+                const frame = Math.floor(tick * 0.02) % 2;
+                const lines = frame === 0 ? JELLY_A : JELLY_B;
+                lines.forEach((ln, i) => stamp(grid, Math.round(c.y) + i, cx, ln));
+            }
+
+            if (c.type === 'eel') {
+                // Eel: sinuous body
+                const len = 10;
+                const eelChar = c.dir === 1 ? '~' : '~';
+                const headR = ':>';
+                const headL = '<:';
+                for (let i = 0; i < len; i++) {
+                    const wobble = Math.round(Math.sin(t * 3 + i * 0.8 + c.phase) * 0.6);
+                    const col = cx + (c.dir === 1 ? i : -i);
+                    const row = c.y + wobble;
+                    if (col >= 1 && col < W - 1 && row >= 1 && row < H - 2) {
+                        grid[row][col] = eelChar;
+                    }
                 }
+                // Head
+                const headX = c.dir === 1 ? cx + len : cx - len;
+                const head = c.dir === 1 ? headR : headL;
+                stamp(grid, c.y, headX, head);
             }
         });
 
-        // Draw border
-        // Top
-        const topBorder = new Array(W).fill('-');
-        topBorder[0] = '+';
-        topBorder[W - 1] = '+';
-        // Embed title
-        const titleStart = Math.floor((W - title.length) / 2);
-        for (let i = 0; i < title.length; i++) {
-            topBorder[titleStart + i] = title[i];
-        }
-        grid[0] = topBorder;
+        // --- Border ---
+        const top = new Array(W).fill('~');
+        top[0] = '+';
+        top[W - 1] = '+';
+        const ts = Math.floor((W - title.length) / 2);
+        for (let i = 0; i < title.length; i++) top[ts + i] = title[i];
+        grid[0] = top;
 
-        // Bottom
-        const botBorder = new Array(W).fill('-');
-        botBorder[0] = '+';
-        botBorder[W - 1] = '+';
-        grid[H - 1] = botBorder;
+        const bot = new Array(W).fill('~');
+        bot[0] = '+';
+        bot[W - 1] = '+';
+        grid[H - 1] = bot;
 
-        // Sides
         for (let r = 1; r < H - 1; r++) {
             grid[r][0] = '|';
             grid[r][W - 1] = '|';
@@ -235,37 +375,88 @@ sections.forEach(s => sectionObserver.observe(s));
     function update() {
         tick++;
 
-        // Move fish
-        for (let i = fish.length - 1; i >= 0; i--) {
-            const f = fish[i];
-            f.x += f.speed * f.dir;
-
-            // Spawn bubble occasionally
-            if (Math.random() < 0.01) {
-                const bx = f.dir === 1 ? Math.round(f.x) : Math.round(f.x + f.shape.length - 1);
-                bubbles.push({ x: bx, y: f.y - 1, size: Math.random(), drift: (Math.random() - 0.5) * 0.3 });
+        creatures.forEach(c => {
+            if (c.type === 'fish' || c.type === 'shark') {
+                c.x += c.speed * c.dir;
             }
 
-            // Remove if off screen, respawn
-            if ((f.dir === 1 && f.x > W + 2) || (f.dir === -1 && f.x < -f.shape.length - 2)) {
-                fish.splice(i, 1);
-                spawnFish();
+            if (c.type === 'crab') {
+                c.x += c.speed * c.dir;
+                // Bounce off walls
+                if (c.x <= 2 || c.x >= W - 8) c.dir *= -1;
             }
+
+            if (c.type === 'jelly') {
+                // Slow bob up and down, gentle horizontal drift
+                c.y += Math.sin(tick * 0.008 + c.phase) * 0.02;
+                c.x += c.drift;
+                // Gentle bounce
+                if (c.x <= 2 || c.x >= W - 6) c.drift *= -1;
+                if (c.y < 1) c.y = 1;
+                if (c.y > H - 5) c.y = H - 5;
+            }
+
+            if (c.type === 'eel') {
+                c.x += c.speed * c.dir;
+            }
+        });
+
+        // Spawn bubbles from fish/shark occasionally
+        creatures.forEach(c => {
+            if ((c.type === 'fish' || c.type === 'shark') && Math.random() < 0.004) {
+                const bx = c.dir === 1 ? Math.round(c.x) : Math.round(c.x + (c.shape ? c.shape.length : 3));
+                bubbles.push({ x: bx, y: c.y - 1, big: Math.random() > 0.6, drift: (Math.random() - 0.5) * 0.2 });
+            }
+        });
+
+        // Treasure chest bubbles
+        if (Math.random() < 0.008) {
+            bubbles.push({ x: chest.x + 2, y: H - 5, big: false, drift: (Math.random() - 0.5) * 0.1 });
         }
 
         // Move bubbles
         for (let i = bubbles.length - 1; i >= 0; i--) {
             const b = bubbles[i];
-            b.y -= 0.1 + Math.random() * 0.05;
-            b.x += b.drift * 0.1;
-            if (b.y < 1) {
-                bubbles.splice(i, 1);
+            b.y -= 0.03 + Math.random() * 0.02;
+            b.x += b.drift * 0.05;
+            if (b.y < 1) bubbles.splice(i, 1);
+        }
+
+        // Respawn creatures that leave the screen
+        for (let i = creatures.length - 1; i >= 0; i--) {
+            const c = creatures[i];
+            if (c.type === 'fish') {
+                if ((c.dir === 1 && c.x > W + 5) || (c.dir === -1 && c.x < -(c.shape.length + 5))) {
+                    creatures.splice(i, 1);
+                    spawnFish(false);
+                }
+            }
+            if (c.type === 'shark') {
+                if ((c.dir === 1 && c.x > W + 5) || (c.dir === -1 && c.x < -(c.shape.length + 5))) {
+                    creatures.splice(i, 1);
+                    spawnShark(false);
+                }
+            }
+            if (c.type === 'eel') {
+                if ((c.dir === 1 && c.x > W + 15) || (c.dir === -1 && c.x < -15)) {
+                    creatures.splice(i, 1);
+                    spawnEel(false);
+                }
             }
         }
 
         render();
         requestAnimationFrame(update);
     }
+
+    init();
+
+    // Resize handler
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => init(), 200);
+    });
 
     // Respect reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
