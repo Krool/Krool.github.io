@@ -501,7 +501,7 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
 }
 
 .project-image.guild-leader {
-    background-image: url('../assets/images/guildleader-preview.png');
+    background-image: url('../assets/images/guild leader image.png');
     background-size: cover;
     background-position: center;
 }
