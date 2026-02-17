@@ -28,7 +28,7 @@
     </image:image>
   </url>
 
-  <!-- Pokemon Blue Gacha -->
+  <!-- Pokemon Gacha -->
   <url>
     <loc>https://krool.github.io/PokemonBlueGacha/</loc>
     <lastmod>2025-12-03T00:00:00+00:00</lastmod>
@@ -36,7 +36,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://krool.github.io/PokemonBlueGacha/og-preview.png</image:loc>
-      <image:title>Pokemon Blue Gacha</image:title>
+      <image:title>Pokemon Gacha</image:title>
       <image:caption>A browser-based gacha collection game featuring all 151 Gen 1 Pokemon</image:caption>
     </image:image>
   </url>

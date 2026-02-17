@@ -60,7 +60,7 @@
                 },
                 {
                     "@type": "CreativeWork",
-                    "name": "Pokemon Blue Gacha",
+                    "name": "Pokemon Gacha",
                     "url": "https://krool.github.io/PokemonBlueGacha/",
                     "description": "A browser-based gacha collection game featuring all 151 Gen 1 Pokemon"
                 }
@@ -78,15 +78,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <a href="#games" class="skip-link">Skip to content</a>
+    <a href="#web-games" class="skip-link">Skip to content</a>
 
     <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#games" class="logo">Krool World</a>
+            <a href="#web-games" class="logo">Krool World</a>
             <ul class="nav-links">
-                <li><a href="#games">Games</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="https://github.com/Krool" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="#web-games">Web Games</a></li>
+                <li><a href="#phone-games">Phone Games</a></li>
+                <li><a href="#desktop">Desktop</a></li>
+                <li><a href="#web-tools">Web Tools</a></li>
+                <li><a href="#prototypes">Prototypes</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -114,34 +116,19 @@
         </div>
     </section>
 
-    <section id="games" class="section">
+    <section id="web-games" class="section">
         <div class="container">
-            <h2 class="section-title">Games</h2>
+            <h2 class="section-title">Web Games</h2>
             <div class="bento-grid">
 
-                <!-- 1. Roguecraft - Featured Large -->
-                <article class="project-card has-video">
-                    <div class="project-image roguecraft" role="img" aria-label="Roguecraft game screenshot">
-                        <video class="project-video" muted loop playsinline preload="none" src="assets/images/roguecraft recording.mp4"></video>
-                    </div>
-                    <div class="project-content">
-                        <h3>Roguecraft</h3>
-                        <p>A Vampire Survivors-style space shooter you can play in your phone's browser. Collect weapons, trigger evolutions, and survive waves of enemies across elemental combat systems. Peer-to-peer co-op lets you team up with friends.</p>
-                        <div class="project-links">
-                            <a href="https://krool.github.io/AcecraftPrototype/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
-                            <a href="https://github.com/Krool/AcecraftPrototype" target="_blank" rel="noopener noreferrer" class="link">Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 2. SuperSmashTexty - Featured Large -->
+                <!-- SuperSmashTexty -->
                 <article class="project-card has-video">
                     <div class="project-image smashtexty" role="img" aria-label="SuperSmashTexty game screenshot">
                         <video class="project-video" muted loop playsinline preload="none" src="assets/images/smash text video.mp4"></video>
                     </div>
                     <div class="project-content">
                         <h3>SuperSmashTexty</h3>
-                        <p>Drop into an ASCII arena with up to 3 friends — no download needed. Fight through procedurally generated levels, grab roguelike upgrades, and brawl over peer-to-peer co-op. Collab with lpm24.</p>
+                        <p>SmashTV inspired arena fighter co-op roguelike. Fight through procedurally generated levels, grab upgrades, cash, and class unlocks in peer-to-peer co-op. Collab with lpm24.</p>
                         <div class="project-links">
                             <a href="https://lpm24.github.io/SuperSmashTexty/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
                             <a href="https://github.com/lpm24/SuperSmashTexty" target="_blank" rel="noopener noreferrer" class="link">Source</a>
@@ -149,7 +136,68 @@
                     </div>
                 </article>
 
-                <!-- 3. Typecast -->
+                <!-- Roguecraft -->
+                <article class="project-card has-video">
+                    <div class="project-image roguecraft" role="img" aria-label="Roguecraft game screenshot">
+                        <video class="project-video" muted loop playsinline preload="none" src="assets/images/roguecraft recording.mp4"></video>
+                    </div>
+                    <div class="project-content">
+                        <h3>Roguecraft</h3>
+                        <p>A Vampire Survivors-style space shooter you can play in your phone's browser (Share->AddToHome for offline). Collect weapons, trigger evolutions, and survive waves of enemies across many levels. Peer-to-peer co-op lets you team up with friends.</p>
+                        <div class="project-links">
+                            <a href="https://krool.github.io/AcecraftPrototype/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
+                            <a href="https://github.com/Krool/AcecraftPrototype" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guild Leader -->
+                <article class="project-card has-video">
+                    <div class="project-image guild-leader" role="img" aria-label="Guild Leader game screenshot">
+                        <video class="project-video" muted loop playsinline preload="none" src="assets/images/guild leader video.mp4"></video>
+                    </div>
+                    <div class="project-content">
+                        <h3>Guild Leader</h3>
+                        <p>Run a fantasy raiding guild. Recruit heroes, build out their skill trees, and race rival AI guilds to world-first raid clears. A roguelike management sim with deep meta progression.</p>
+                        <div class="project-links">
+                            <a href="https://krool.itch.io/gl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play on itch.io</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="phone-games" class="section">
+        <div class="container">
+            <h2 class="section-title">Phone Games</h2>
+            <div class="bento-grid">
+
+                <!-- Dive Dude -->
+                <article class="project-card has-video">
+                    <div class="project-image dive-dude" role="img" aria-label="Dive Dude game screenshot">
+                        <video class="project-video" muted loop playsinline preload="none" src="assets/images/dive dude recording.mp4"></video>
+                    </div>
+                    <div class="project-content">
+                        <h3>Dive Dude</h3>
+                        <p>A one-tapping, double-jumping, offline-friendly, endless runner for iOS. Dodge hazards, leave tombstones and climb global leaderboards. Multiple modes and characters give you reasons to keep diving.</p>
+                        <div class="project-links">
+                            <a href="https://apps.apple.com/us/app/dive-dude/id6450519706" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="desktop" class="section">
+        <div class="container">
+            <h2 class="section-title">Desktop</h2>
+            <div class="bento-grid">
+
+                <!-- Typecast -->
                 <article class="project-card has-video">
                     <div class="project-image typecast" role="img" aria-label="Typecast game screenshot">
                         <video class="project-video" muted loop playsinline preload="none" src="assets/images/typecast video.mp4"></video>
@@ -164,103 +212,14 @@
                     </div>
                 </article>
 
-                <!-- 4. Dive Dude -->
+                <!-- Desktop Aquarium -->
                 <article class="project-card has-video">
-                    <div class="project-image dive-dude" role="img" aria-label="Dive Dude game screenshot">
-                        <video class="project-video" muted loop playsinline preload="none" src="assets/images/dive dude recording.mp4"></video>
-                    </div>
-                    <div class="project-content">
-                        <h3>Dive Dude</h3>
-                        <p>A one-tap endless diver for iOS. Dodge hazards, unlock characters, and climb global leaderboards. RPG upgrades and a campaign mode give you reasons to keep diving.</p>
-                        <div class="project-links">
-                            <a href="https://apps.apple.com/us/app/dive-dude/id6450519706" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 5. Guild Leader -->
-                <article class="project-card has-video">
-                    <div class="project-image guild-leader" role="img" aria-label="Guild Leader game screenshot">
-                        <video class="project-video" muted loop playsinline preload="none" src="assets/images/guild leader video.mp4"></video>
-                    </div>
-                    <div class="project-content">
-                        <h3>Guild Leader</h3>
-                        <p>Run a fantasy raiding guild. Recruit heroes, build out their skill trees, and race rival AI guilds to world-first raid clears. A roguelike management sim with deep meta progression.</p>
-                        <div class="project-links">
-                            <a href="https://krool.itch.io/gl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play on itch.io</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 5. Pokemon Blue Gacha -->
-                <article class="project-card">
-                    <div class="project-image pokemon" role="img" aria-label="Pokemon Blue Gacha game screenshot"></div>
-                    <div class="project-content">
-                        <h3>Pokemon Blue Gacha</h3>
-                        <p>Relive Gen 1 nostalgia one pull at a time. Collect all 151 Pokemon and 79 classic items across four gacha machines, and fill out your Pokedex.</p>
-                        <div class="project-links">
-                            <a href="https://krool.github.io/PokemonBlueGacha/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
-                            <a href="https://github.com/Krool/PokemonBlueGacha" target="_blank" rel="noopener noreferrer" class="link">Source</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="tools" class="section tools">
-        <div class="container">
-            <h2 class="section-title">Tools</h2>
-            <div class="bento-grid">
-
-                <!-- 1. Fantasy Football Analyzer -->
-                <article class="project-card">
-                    <div class="project-image fantasy-football" role="img" aria-label="Fantasy Football Analyzer screenshot"></div>
-                    <div class="project-content">
-                        <h3>Fantasy Football Analyzer</h3>
-                        <p>Plug in your ESPN, Sleeper, or Yahoo league and get instant draft grades, waiver wire picks, and roster breakdowns. See how your team actually stacks up.</p>
-                        <div class="project-links">
-                            <a href="https://krool.github.io/FantasyFootballAnalyzer/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/FantasyFootballAnalyzer" target="_blank" rel="noopener noreferrer" class="link">Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 2. Car Compare -->
-                <article class="project-card">
-                    <div class="project-image car-compare" role="img" aria-label="Car Compare tool screenshot"></div>
-                    <div class="project-content">
-                        <h3>Car Compare</h3>
-                        <p>Pick a car, set it as your baseline, and compare it against anything else on the lot. Filter by price, fuel type, body style, size for your garage, and more.</p>
-                        <div class="project-links">
-                            <a href="https://krool.github.io/CarCompare/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/CarCompare" target="_blank" rel="noopener noreferrer" class="link">Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 3. Travel Agent Zero -->
-                <article class="project-card">
-                    <div class="project-image travel-agent" role="img" aria-label="Travel Agent Zero screenshot"></div>
-                    <div class="project-content">
-                        <h3>Travel Agent Zero</h3>
-                        <p>Find your next trip by telling it how long you want to go, where you're starting from, and what time of year works. A retro-futuristic travel planner that narrows down destinations so you don't have to.</p>
-                        <div class="project-links">
-                            <a href="https://krool.github.io/TravelAgentZero/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/TravelAgentZero" target="_blank" rel="noopener noreferrer" class="link">Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 4. ASCII Reef -->
-                <article class="project-card has-video">
-                    <div class="project-image ascii-reef" role="img" aria-label="ASCII Reef desktop aquarium screenshot">
+                    <div class="project-image desktop-aquarium" role="img" aria-label="Desktop Aquarium screenshot">
                         <video class="project-video" muted loop playsinline preload="none" src="assets/images/desktop aquarium.mp4"></video>
                     </div>
                     <div class="project-content">
-                        <h3>ASCII Reef</h3>
-                        <p>An ambient ASCII aquarium that lives on your desktop. Type, click, or play music to discover 75 creatures. Built with Tauri for Windows and macOS.</p>
+                        <h3>Desktop Aquarium</h3>
+                        <p>An ambient ASCII aquarium that lives on your desktop. Type, click, or play music to discover new inhabitants. Built with Tauri for Windows and macOS.</p>
                         <div class="project-links">
                             <a href="assets/downloads/ASCII.Reef_0.1.0_x64-setup.exe" class="btn btn-primary btn-sm" download>Windows</a>
                             <a href="assets/downloads/ASCII.Reef_0.1.0_aarch64.dmg" class="link" download>macOS (Apple Silicon)</a>
@@ -269,7 +228,7 @@
                     </div>
                 </article>
 
-                <!-- 5. Steam Screenshot Viewer -->
+                <!-- Steam Screenshot Viewer -->
                 <article class="project-card">
                     <div class="project-image screenshot" role="img" aria-label="Steam Screenshot Viewer screenshot"></div>
                     <div class="project-content">
@@ -285,6 +244,76 @@
             </div>
         </div>
     </section>
+
+    <section id="web-tools" class="section">
+        <div class="container">
+            <h2 class="section-title">Web Tools</h2>
+            <div class="bento-grid">
+
+                <!-- Fantasy Football Analyzer -->
+                <article class="project-card">
+                    <div class="project-image fantasy-football" role="img" aria-label="Fantasy Football Analyzer screenshot"></div>
+                    <div class="project-content">
+                        <h3>Fantasy Football Analyzer</h3>
+                        <p>Plug in your ESPN, Sleeper, or Yahoo league and get instant draft grades, league awards, trade analysis, and roster breakdowns. See how your team actually stacks up.</p>
+                        <div class="project-links">
+                            <a href="https://krool.github.io/FantasyFootballAnalyzer/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
+                            <a href="https://github.com/Krool/FantasyFootballAnalyzer" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Car Compare -->
+                <article class="project-card">
+                    <div class="project-image car-compare" role="img" aria-label="Car Compare tool screenshot"></div>
+                    <div class="project-content">
+                        <h3>Car Compare</h3>
+                        <p>Pick a car, set it as your baseline, and compare it against anything else on the lot. Filter by price, fuel type, body style, width, and more.</p>
+                        <div class="project-links">
+                            <a href="https://krool.github.io/CarCompare/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
+                            <a href="https://github.com/Krool/CarCompare" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Travel Agent Zero -->
+                <article class="project-card">
+                    <div class="project-image travel-agent" role="img" aria-label="Travel Agent Zero screenshot"></div>
+                    <div class="project-content">
+                        <h3>Travel Agent Zero</h3>
+                        <p>Find your next trip by telling it how long you want to go, where you're starting from, and what time of year works. A travel planner that narrows down destinations and helps you decide.</p>
+                        <div class="project-links">
+                            <a href="https://krool.github.io/TravelAgentZero/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
+                            <a href="https://github.com/Krool/TravelAgentZero" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="prototypes" class="section">
+        <div class="container">
+            <h2 class="section-title">Prototypes</h2>
+            <div class="bento-grid">
+
+                <!-- Pokemon Red Blue -->
+                <article class="project-card">
+                    <div class="project-image pokemon" role="img" aria-label="Pokemon Gacha game screenshot"></div>
+                    <div class="project-content">
+                        <h3>Pokemon Gacha</h3>
+                        <p>Relive Gen 1 nostalgia one pull at a time. Collect all 151 Pokemon and 79 classic items across four gacha machines, and fill out your Pokedex.</p>
+                        <div class="project-links">
+                            <a href="https://krool.github.io/PokemonBlueGacha/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
+                            <a href="https://github.com/Krool/PokemonBlueGacha" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
     </main>
 
     <footer class="footer">
@@ -292,9 +321,11 @@
             <div class="footer-content">
                 <a href="#" class="footer-top" aria-label="Back to top">&uarr; Back to top</a>
                 <div class="footer-links">
-                    <a href="#games">Games</a>
-                    <a href="#tools">Tools</a>
-                    <a href="https://github.com/Krool" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="#web-games">Web Games</a>
+                    <a href="#phone-games">Phone Games</a>
+                    <a href="#desktop">Desktop</a>
+                    <a href="#web-tools">Web Tools</a>
+                    <a href="#prototypes">Prototypes</a>
                 </div>
                 <p>&copy; 2026 Krool. All rights reserved.</p>
             </div>
