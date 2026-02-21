@@ -136,6 +136,20 @@ document.querySelectorAll('.has-video').forEach(card => {
 });
 
 // ============================================
+// ASCII Reef - smart download button
+// ============================================
+(function() {
+    const primary = document.getElementById('ascii-reef-primary-download');
+    if (!primary) return;
+
+    // Keep primary CTA stable; users choose explicit macOS builds below.
+    if (primary.dataset.win) {
+        primary.href = primary.dataset.win;
+        primary.textContent = 'Download for Windows';
+    }
+})();
+
+// ============================================
 // ASCII FISH TANK (with color)
 // ============================================
 (function() {

@@ -565,6 +565,21 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     margin-top: auto;
 }
 
+.download-options {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.download-options .btn {
+    opacity: 0.75;
+}
+
+.download-options .btn:hover {
+    opacity: 1;
+}
+
 .link {
     color: var(--text-secondary);
     font-size: 0.85rem;
