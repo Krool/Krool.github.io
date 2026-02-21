@@ -67,7 +67,7 @@
                 {
                     "@type": "SoftwareApplication",
                     "name": "ASCII Reef",
-                    "url": "https://krool.github.io/assets/downloads/ASCII.Reef_0.1.0_x64-setup.exe",
+                    "url": "https://krool.github.io/assets/downloads/ASCII%20Reef_latest-setup.exe",
                     "operatingSystem": "Windows",
                     "applicationCategory": "GameApplication",
                     "description": "An ambient ASCII aquarium that lives on your desktop. Type, click, or play music to discover new inhabitants."
@@ -229,7 +229,20 @@
                         <h3>ASCII Reef</h3>
                         <p>An ambient ASCII aquarium that lives on your desktop. Type, click, or play music to discover new inhabitants. Built with Tauri for Windows and macOS.</p>
                         <div class="project-links">
-                            <a href="assets/downloads/ASCII.Reef_0.1.0_x64-setup.exe" class="btn btn-primary btn-sm" download>Windows</a>
+                            <a id="ascii-reef-primary-download"
+                               href="assets/downloads/ASCII Reef_latest-setup.exe"
+                               class="btn btn-primary btn-sm"
+                               data-win="assets/downloads/ASCII Reef_latest-setup.exe"
+                               data-win-msi="assets/downloads/ASCII Reef_latest.msi"
+                               data-mac-arm="assets/downloads/ASCII.Reef_0.1.0_aarch64.dmg"
+                               data-mac-intel="assets/downloads/ASCII.Reef_0.1.0_x64.dmg"
+                               download>Download</a>
+                            <div class="download-options" aria-label="Other downloads">
+                                <a class="btn btn-ghost btn-sm" href="assets/downloads/ASCII Reef_latest-setup.exe" download>Windows</a>
+                                <a class="btn btn-ghost btn-sm" href="assets/downloads/ASCII Reef_latest.msi" download>Windows (MSI)</a>
+                                <a class="btn btn-ghost btn-sm" href="assets/downloads/ASCII.Reef_0.1.0_aarch64.dmg">macOS (Apple)</a>
+                                <a class="btn btn-ghost btn-sm" href="assets/downloads/ASCII.Reef_0.1.0_x64.dmg">macOS (Intel)</a>
+                            </div>
                             <a href="https://github.com/Krool/ASCII-Reef" target="_blank" rel="noopener noreferrer" class="link">Source</a>
                         </div>
                     </div>
