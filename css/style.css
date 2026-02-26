@@ -530,6 +530,12 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-position: center;
 }
 
+.project-image.sling-squad {
+    background-image: url('../assets/images/sling squad screenshot.png');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Project Content */
 .project-card {
     display: flex;

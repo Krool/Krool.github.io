@@ -12,6 +12,9 @@ Desktop.ini
 # Claude Code
 .claude/
 
+# Original uncompressed videos
+assets/images/originals/
+
 # Build artifacts (not linked from site)
 assets/downloads/ascii-reef.exe
 assets/downloads/ASCII Reef_0.1.0_x64-setup.exe
