@@ -465,73 +465,73 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
    ============================================ */
 
 .project-image.roguecraft {
-    background-image: url('../assets/images/roguecraft-preview.png');
+    background-image: url('../assets/images/roguecraft-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.smashtexty {
-    background-image: url('../assets/images/smashtexty-preview.png');
+    background-image: url('../assets/images/smashtexty-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.typecast {
-    background-image: url('../assets/images/typecast-thumb.jpg');
+    background-image: url('../assets/images/typecast-thumb.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.pokemon {
-    background-image: url('../assets/images/pokemon-preview.png');
+    background-image: url('../assets/images/pokemon-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.fantasy-football {
-    background-image: url('../assets/images/fantasy-preview.png');
+    background-image: url('../assets/images/fantasy-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.car-compare {
-    background-image: url('../assets/images/carcompare-preview.png');
+    background-image: url('../assets/images/carcompare-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.travel-agent {
-    background-image: url('../assets/images/travel-preview.png');
+    background-image: url('../assets/images/travel-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.ascii-reef {
-    background-image: url('../assets/images/desktop aquarium screenshot.png');
+    background-image: url('../assets/images/desktop aquarium screenshot.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.screenshot {
-    background-image: url('../assets/images/screenshot-preview.png');
+    background-image: url('../assets/images/screenshot-preview.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.dive-dude {
-    background-image: url('../assets/images/dive dude screenshot.png');
+    background-image: url('../assets/images/dive dude screenshot.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.guild-leader {
-    background-image: url('../assets/images/guild leader image.png');
+    background-image: url('../assets/images/guild leader image.webp');
     background-size: cover;
     background-position: center;
 }
 
 .project-image.sling-squad {
-    background-image: url('../assets/images/sling squad screenshot.png');
+    background-image: url('../assets/images/sling squad screenshot.webp');
     background-size: cover;
     background-position: center;
 }
