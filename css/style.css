@@ -536,8 +536,14 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-position: center;
 }
 
-.project-image.spawn-wars {
+.project-image.lanecraft {
     background-image: url('../assets/images/spawn wars screenshot.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-image.basketball-projections {
+    background-image: url('../assets/images/basketball projections screenshot.webp');
     background-size: cover;
     background-position: center;
 }
