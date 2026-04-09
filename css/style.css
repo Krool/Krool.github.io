@@ -737,13 +737,6 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     color: var(--text-primary);
 }
 
-.footer-tagline {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-}
-
 .footer p {
     color: var(--text-muted);
     font-size: 0.8rem;
