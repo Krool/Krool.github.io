@@ -136,6 +136,92 @@ document.querySelectorAll('.has-video').forEach(card => {
 });
 
 // ============================================
+// View Toggle - Category / Timeline
+// ============================================
+(function() {
+    const toggle = document.querySelector('.view-toggle');
+    const timelineSection = document.getElementById('timeline-section');
+    const timelineGrid = document.getElementById('timeline-grid');
+    if (!toggle || !timelineGrid || !timelineSection) return;
+
+    // Snapshot each project card's original parent + order so we can restore.
+    const originalHomes = [];
+    document.querySelectorAll('.project-card').forEach(card => {
+        originalHomes.push({ card, parent: card.parentElement });
+    });
+
+    const MONTH_NAMES = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+
+    function buildTimeline() {
+        timelineGrid.innerHTML = '';
+        const dated = originalHomes
+            .filter(({ card }) => card.dataset.date)
+            .map(({ card }) => card)
+            .sort((a, b) => b.dataset.date.localeCompare(a.dataset.date));
+
+        let currentYM = '';
+        dated.forEach(card => {
+            const ym = card.dataset.date.slice(0, 7);
+            if (ym !== currentYM) {
+                currentYM = ym;
+                const [y, m] = ym.split('-');
+                const header = document.createElement('h3');
+                header.className = 'timeline-divider';
+                header.textContent = `${MONTH_NAMES[parseInt(m, 10) - 1]} ${y}`;
+                timelineGrid.appendChild(header);
+            }
+            timelineGrid.appendChild(card);
+        });
+    }
+
+    function restoreCategory() {
+        originalHomes.forEach(({ card, parent }) => parent.appendChild(card));
+        timelineGrid.innerHTML = '';
+    }
+
+    function setView(view) {
+        const isTimeline = view === 'timeline';
+        if (isTimeline) {
+            buildTimeline();
+            timelineSection.removeAttribute('hidden');
+            document.body.classList.add('view-timeline');
+        } else {
+            restoreCategory();
+            timelineSection.setAttribute('hidden', '');
+            document.body.classList.remove('view-timeline');
+        }
+        toggle.querySelectorAll('.view-toggle-btn').forEach(btn => {
+            const active = btn.dataset.view === view;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        localStorage.setItem('projectView', view);
+    }
+
+    toggle.addEventListener('click', (e) => {
+        const btn = e.target.closest('.view-toggle-btn');
+        if (!btn) return;
+        setView(btn.dataset.view);
+    });
+
+    // When in timeline mode, clicking a category nav link should flip the
+    // view back to category first, otherwise the anchor jumps to a hidden section.
+    const categoryAnchors = ['#phone-games', '#web-games', '#desktop', '#web-tools'];
+    document.querySelectorAll('.nav-links a[href^="#"], .footer-links a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+            if (document.body.classList.contains('view-timeline') &&
+                categoryAnchors.includes(a.getAttribute('href'))) {
+                setView('category');
+            }
+        });
+    });
+
+    const saved = localStorage.getItem('projectView');
+    if (saved === 'timeline') setView('timeline');
+})();
+
+// ============================================
 // ASCII Reef - smart download button
 // ============================================
 (function() {

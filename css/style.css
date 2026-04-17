@@ -432,6 +432,100 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background: var(--bg-secondary);
 }
 
+/* ============================================
+   VIEW TOGGLE (Category / Timeline)
+   ============================================ */
+
+.view-controls {
+    padding: 1.5rem 0 0;
+    background: transparent;
+}
+
+.view-controls .container {
+    display: flex;
+    justify-content: center;
+}
+
+.view-toggle {
+    display: inline-flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 2px;
+}
+
+.view-toggle-btn {
+    padding: 0.5rem 1.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background var(--transition), color var(--transition);
+}
+
+.view-toggle-btn:hover {
+    color: var(--text-primary);
+}
+
+.view-toggle-btn.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+body.light-mode .view-toggle-btn.active {
+    color: #fff;
+}
+
+/* Timeline-only visibility */
+body.view-timeline #phone-games,
+body.view-timeline #web-games,
+body.view-timeline #desktop,
+body.view-timeline #web-tools {
+    display: none;
+}
+
+body:not(.view-timeline) #timeline-section {
+    display: none;
+}
+
+/* Timeline month/year dividers span full grid width */
+.timeline-divider {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.75rem 0 0.25rem;
+    margin-top: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.01em;
+}
+
+.timeline-divider:first-child {
+    margin-top: 0;
+}
+
+/* In timeline mode, featured card collapses to a normal grid cell */
+body.view-timeline .project-card.featured {
+    grid-column: span 1;
+    flex-direction: column;
+}
+
+body.view-timeline .project-card.featured .project-image {
+    width: 100%;
+    min-height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+body.view-timeline .project-card.featured .project-content {
+    width: 100%;
+}
+
 .section-title {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 3vw, 1.75rem);
