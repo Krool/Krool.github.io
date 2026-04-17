@@ -603,6 +603,12 @@ body.light-mode .theme-toggle .icon-moon { display: none; }
     background-position: center;
 }
 
+.project-image.comboace {
+    background-image: url('../assets/images/comboace_screenshot.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .project-image.basketball-projections {
     background-image: url('../assets/images/basketball projections screenshot.webp');
     background-size: cover;
