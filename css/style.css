@@ -709,6 +709,12 @@ body.view-timeline .project-card.featured .project-content {
     background-position: center;
 }
 
+.project-image.chefs-choice {
+    background-image: url('../assets/images/chefschoice screenshot.png');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Project Content */
 .project-card {
     display: flex;
