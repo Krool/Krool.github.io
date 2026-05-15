@@ -153,12 +153,31 @@ document.querySelectorAll('.has-video').forEach(card => {
     const MONTH_NAMES = ['January','February','March','April','May','June',
                         'July','August','September','October','November','December'];
 
+    let timelineDir = localStorage.getItem('timelineDir') === 'asc' ? 'asc' : 'desc';
+    const timelineBtn = toggle.querySelector('[data-view="timeline"]');
+    const timelineBtnBaseLabel = timelineBtn.textContent.trim();
+
+    function updateTimelineBtnLabel() {
+        const isActive = timelineBtn.classList.contains('active');
+        if (!isActive) {
+            timelineBtn.textContent = timelineBtnBaseLabel;
+            timelineBtn.removeAttribute('title');
+            return;
+        }
+        const arrow = timelineDir === 'desc' ? '↓' : '↑';
+        timelineBtn.textContent = `${timelineBtnBaseLabel} ${arrow}`;
+        timelineBtn.setAttribute('title',
+            timelineDir === 'desc' ? 'Newest first — click again to flip' : 'Oldest first — click again to flip');
+    }
+
     function buildTimeline() {
         timelineGrid.innerHTML = '';
         const dated = originalHomes
             .filter(({ card }) => card.dataset.date)
             .map(({ card }) => card)
-            .sort((a, b) => b.dataset.date.localeCompare(a.dataset.date));
+            .sort((a, b) => timelineDir === 'desc'
+                ? b.dataset.date.localeCompare(a.dataset.date)
+                : a.dataset.date.localeCompare(b.dataset.date));
 
         let currentYM = '';
         dated.forEach(card => {
@@ -196,13 +215,23 @@ document.querySelectorAll('.has-video').forEach(card => {
             btn.classList.toggle('active', active);
             btn.setAttribute('aria-selected', active ? 'true' : 'false');
         });
+        updateTimelineBtnLabel();
         localStorage.setItem('projectView', view);
     }
 
     toggle.addEventListener('click', (e) => {
         const btn = e.target.closest('.view-toggle-btn');
         if (!btn) return;
-        setView(btn.dataset.view);
+        const view = btn.dataset.view;
+        const alreadyActive = btn.classList.contains('active');
+        if (view === 'timeline' && alreadyActive) {
+            timelineDir = timelineDir === 'desc' ? 'asc' : 'desc';
+            localStorage.setItem('timelineDir', timelineDir);
+            updateTimelineBtnLabel();
+            buildTimeline();
+            return;
+        }
+        setView(view);
     });
 
     // When in timeline mode, clicking a category nav link should flip the
