@@ -108,10 +108,14 @@ sections.forEach(s => sectionObserver.observe(s));
 
 // CSS scroll-behavior: smooth handles anchor scrolling natively
 
-// Video cards — autoplay when visible, pause when off-screen
+// Video cards — autoplay when visible, pause when off-screen.
+// Respect prefers-reduced-motion: skip autoplay entirely so the static .webp
+// poster (set via .project-image background-image) stays put for motion-sensitive users.
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.has-video').forEach(card => {
     const video = card.querySelector('.project-video');
     if (!video) return;
+    if (prefersReducedMotion) return;
 
     const TRIM_END = 1;
 
@@ -663,4 +667,32 @@ document.querySelectorAll('.has-video').forEach(card => {
         render();
         requestAnimationFrame(loop);
     }
+})();
+
+// ============================================
+// Project link click tracking (GA4)
+// The hub is the funnel — this captures which project a visitor opens,
+// INCLUDING native/desktop targets (App Store, Google Play, downloads)
+// that can't run their own web analytics. Mark "project_click" as a Key
+// event in GA4 Admin to turn these into conversions.
+// ============================================
+(function() {
+    if (typeof window.gtag !== 'function') return;
+    document.addEventListener('click', function(e) {
+        const a = e.target.closest('.project-card a[href]');
+        if (!a) return;
+        const card = a.closest('.project-card');
+        const heading = card && card.querySelector('h3');
+        const name = heading ? heading.textContent.trim() : 'Unknown';
+        const label = (a.textContent || '').trim();
+        let host = '';
+        try { host = new URL(a.href, location.href).hostname; } catch (_) { /* opaque href */ }
+        window.gtag('event', 'project_click', {
+            project_name: name,
+            link_label: label,
+            link_url: a.href,
+            link_domain: host,
+            outbound: host !== '' && host !== location.hostname
+        });
+    }, { capture: true });
 })();

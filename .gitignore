@@ -15,6 +15,11 @@ Desktop.ini
 # Original uncompressed videos
 assets/images/originals/
 
+# Stray artifact from a botched shell redirect (never commit — see the
+# 41MB file literally named `downloads" && ls -lh ...`). The pattern matches
+# any path containing `&&`, which no legitimate file ever has.
+*&&*
+
 # Build artifacts (not linked from site)
 assets/downloads/ascii-reef.exe
 assets/downloads/ASCII Reef_0.1.0_x64-setup.exe

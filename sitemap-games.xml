@@ -41,4 +41,46 @@
     </image:image>
   </url>
 
+  <!-- Dive Dude 2 -->
+  <url>
+    <loc>https://krool.github.io/DiveDude2/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Lanecraft (landing) -->
+  <url>
+    <loc>https://krool.github.io/lanecraft-web/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/lanecraft-web/feature.png</image:loc>
+      <image:title>Lanecraft - Free Browser Strategy Game</image:title>
+      <image:caption>9 races, online multiplayer, upgrade trees, and bot AI</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Sling Party (landing) -->
+  <url>
+    <loc>https://krool.github.io/sling-party-web/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://krool.github.io/sling-party-web/feature.png</image:loc>
+      <image:title>Sling Party - Free Physics Roguelike</image:title>
+      <image:caption>Launch heroes from a slingshot into enemy fortresses</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Friend Soccer -->
+  <url>
+    <loc>https://krool.github.io/friend-soccer/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

@@ -56,4 +56,20 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- Chef's Choice (Appliance research) -->
+  <url>
+    <loc>https://krool.github.io/ApplianceCompare/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Basketball Projections -->
+  <url>
+    <loc>https://krool.github.io/BasketballProjections/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
