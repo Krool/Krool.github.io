@@ -715,6 +715,18 @@ body.view-timeline .project-card.featured .project-content {
     background-position: center;
 }
 
+.project-image.dive-dude-2 {
+    background-image: url('../assets/images/dive dude 2 screenshot.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-image.friend-soccer {
+    background-image: url('../assets/images/friend soccer screenshot.webp');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Project Content */
 .project-card {
     display: flex;
