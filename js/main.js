@@ -125,10 +125,15 @@ document.querySelectorAll('.has-video').forEach(card => {
         }
     });
 
+    // Only fade the video in over the poster once it's ACTUALLY playing. On mobile
+    // (esp. iOS) autoplay is frequently blocked or stalls; setting opacity:1 up front
+    // would cover the poster with a black, frame-less video box (the blank-tile bug).
+    // Gating on 'playing' keeps the static poster visible whenever the video can't run.
+    video.addEventListener('playing', () => card.classList.add('touch-play'));
+
     const videoObs = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
             if (video.preload === 'none') video.preload = 'auto';
-            card.classList.add('touch-play');
             video.play().catch(() => {});
         } else {
             card.classList.remove('touch-play');
