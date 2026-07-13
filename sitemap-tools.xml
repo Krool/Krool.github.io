@@ -56,10 +56,10 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- Chef's Choice (Appliance research) -->
+  <!-- Kitchen Appliance Compare (Appliance research) -->
   <url>
     <loc>https://krool.github.io/ApplianceCompare/</loc>
-    <lastmod>2026-06-23</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
