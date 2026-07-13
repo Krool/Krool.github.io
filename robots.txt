@@ -14,3 +14,7 @@ Sitemap: https://krool.github.io/sitemap.xml
 Sitemap: https://krool.github.io/sitemap-main.xml
 Sitemap: https://krool.github.io/sitemap-games.xml
 Sitemap: https://krool.github.io/sitemap-tools.xml
+
+# Project sub-sites host their own full sitemaps (crawlers only read the
+# domain-root robots.txt, so they must be referenced here to be discovered)
+Sitemap: https://krool.github.io/TravelAgentZero/sitemap.xml
