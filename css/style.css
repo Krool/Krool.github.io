@@ -903,6 +903,7 @@ body.view-timeline .project-card.featured .project-content {
     .project-card.featured .project-image {
         width: 100%;
         min-height: auto;
+        aspect-ratio: 16 / 9;
     }
 
     .project-card.featured .project-content {
