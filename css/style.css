@@ -63,6 +63,8 @@ body.light-mode {
 
 html {
     scroll-behavior: smooth;
+    /* Offset anchor scroll targets so the fixed navbar doesn't cover them */
+    scroll-padding-top: 6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
