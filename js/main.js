@@ -179,6 +179,64 @@ document.querySelectorAll('.has-video').forEach(card => {
             timelineDir === 'desc' ? 'Newest first — click again to flip' : 'Oldest first — click again to flip');
     }
 
+    const timelineRuler = document.getElementById('timeline-ruler');
+    let rulerObserver = null;
+
+    // Proportional release ruler: the full span of years mapped onto one rail,
+    // one tick per release. Dense stretches bunch up; empty stretches stay bare.
+    function buildRuler(dated) {
+        if (!timelineRuler) return;
+        if (rulerObserver) { rulerObserver.disconnect(); rulerObserver = null; }
+        timelineRuler.innerHTML = '';
+
+        const times = dated.map(card => new Date(card.dataset.date + 'T00:00:00').getTime());
+        const PAD = 1000 * 60 * 60 * 24 * 120; // 4 months of air at each end
+        const minT = Math.min(...times) - PAD;
+        const maxT = Math.max(...times) + PAD;
+        const span = maxT - minT;
+        const pos = t => timelineDir === 'desc' ? (maxT - t) / span : (t - minT) / span;
+
+        const firstYear = new Date(minT).getFullYear() + 1;
+        const lastYear = new Date(maxT).getFullYear();
+        for (let y = firstYear; y <= lastYear; y++) {
+            const t = new Date(y, 0, 1).getTime();
+            if (t < minT || t > maxT) continue;
+            const label = document.createElement('span');
+            label.className = 'tl-year' + (y % 2 ? ' tl-year-odd' : '');
+            label.style.setProperty('--pos', pos(t).toFixed(4));
+            label.textContent = y;
+            timelineRuler.appendChild(label);
+        }
+
+        const tickFor = new Map();
+        dated.forEach((card, i) => {
+            const tick = document.createElement('button');
+            tick.type = 'button';
+            tick.className = 'tl-tick';
+            tick.style.setProperty('--pos', pos(times[i]).toFixed(4));
+            const [y, m] = card.dataset.date.split('-');
+            const name = card.querySelector('h3')?.textContent.trim() || 'Release';
+            tick.title = `${name} — ${MONTH_NAMES[parseInt(m, 10) - 1]} ${y}`;
+            tick.setAttribute('aria-label', tick.title);
+            tick.addEventListener('click', () => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.remove('tl-flash');
+                void card.offsetWidth;
+                card.classList.add('tl-flash');
+            });
+            timelineRuler.appendChild(tick);
+            tickFor.set(card, tick);
+        });
+
+        // Light up ticks for the releases currently in view.
+        rulerObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                tickFor.get(entry.target)?.classList.toggle('active', entry.isIntersecting);
+            });
+        }, { rootMargin: '-15% 0px -15% 0px' });
+        dated.forEach(card => rulerObserver.observe(card));
+    }
+
     function buildTimeline() {
         timelineGrid.innerHTML = '';
         const dated = originalHomes
@@ -201,11 +259,15 @@ document.querySelectorAll('.has-video').forEach(card => {
             }
             timelineGrid.appendChild(card);
         });
+
+        buildRuler(dated);
     }
 
     function restoreCategory() {
         originalHomes.forEach(({ card, parent }) => parent.appendChild(card));
         timelineGrid.innerHTML = '';
+        if (rulerObserver) { rulerObserver.disconnect(); rulerObserver = null; }
+        if (timelineRuler) timelineRuler.innerHTML = '';
     }
 
     function setView(view) {

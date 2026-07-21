@@ -512,6 +512,166 @@ body:not(.view-timeline) #timeline-section {
     margin-top: 0;
 }
 
+/* ============================================
+   TIMELINE RELEASE RULER
+   A proportional map of the full span: one tick
+   per release, so dense periods bunch up and
+   empty years read as bare rail.
+   ============================================ */
+
+.timeline-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.timeline-ruler-wrap {
+    flex: 0 0 72px;
+    position: relative;
+}
+
+.timeline-ruler {
+    position: sticky;
+    top: 6.5rem;
+    height: calc(100vh - 9rem);
+    width: 100%;
+}
+
+/* The rail itself */
+.timeline-ruler::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 44px;
+    width: 1px;
+    background: var(--border-hover);
+}
+
+.tl-year {
+    position: absolute;
+    top: calc(var(--pos) * 100%);
+    right: 36px;
+    transform: translateY(-50%);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    user-select: none;
+}
+
+.tl-tick {
+    position: absolute;
+    top: calc(var(--pos) * 100%);
+    left: 34px;
+    transform: translateY(-50%);
+    width: 21px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Hairline inside a taller hit area */
+.tl-tick::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.55;
+    transition: all var(--transition);
+}
+
+.tl-tick:hover::after,
+.tl-tick.active::after {
+    opacity: 1;
+    height: 3px;
+    left: -4px;
+    right: -4px;
+    box-shadow: 0 0 6px var(--accent);
+}
+
+.tl-flash {
+    animation: tl-flash 1.2s ease-out;
+}
+
+@keyframes tl-flash {
+    0%, 40% { outline: 2px solid var(--accent); outline-offset: 3px; }
+    100% { outline: 2px solid transparent; outline-offset: 3px; }
+}
+
+/* Mobile: horizontal strip above the cards */
+@media (max-width: 768px) {
+    .timeline-layout {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .timeline-ruler-wrap {
+        flex: none;
+    }
+
+    .timeline-ruler {
+        position: relative;
+        top: 0;
+        height: 52px;
+    }
+
+    .timeline-ruler::before {
+        top: 18px;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 1px;
+    }
+
+    .tl-year {
+        top: auto;
+        bottom: 0;
+        right: auto;
+        left: calc(var(--pos) * 100%);
+        transform: translateX(-50%);
+    }
+
+    .tl-year-odd {
+        display: none;
+    }
+
+    .tl-tick {
+        top: 4px;
+        left: calc(var(--pos) * 100%);
+        transform: translateX(-50%);
+        width: 11px;
+        height: 29px;
+    }
+
+    .tl-tick::after {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: 2px;
+        height: auto;
+    }
+
+    .tl-tick:hover::after,
+    .tl-tick.active::after {
+        width: 3px;
+        height: auto;
+        top: -3px;
+        bottom: -3px;
+        left: 50%;
+        right: auto;
+    }
+}
+
 /* In timeline mode, featured card collapses to a normal grid cell */
 body.view-timeline .project-card.featured {
     grid-column: span 1;
