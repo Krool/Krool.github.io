@@ -162,7 +162,15 @@ document.querySelectorAll('.has-video').forEach(card => {
     const MONTH_NAMES = ['January','February','March','April','May','June',
                         'July','August','September','October','November','December'];
 
-    let timelineDir = localStorage.getItem('timelineDir') === 'asc' ? 'asc' : 'desc';
+    // URL wins over localStorage, so a shared link opens on the view it shows:
+    // ?view=timeline&order=asc
+    const initialParams = new URLSearchParams(window.location.search);
+    const urlView = initialParams.get('view');
+    const urlOrder = initialParams.get('order');
+
+    let timelineDir = urlOrder === 'asc' || urlOrder === 'desc'
+        ? urlOrder
+        : (localStorage.getItem('timelineDir') === 'asc' ? 'asc' : 'desc');
     const timelineBtn = toggle.querySelector('[data-view="timeline"]');
     const timelineBtnBaseLabel = timelineBtn.textContent.trim();
 
@@ -270,7 +278,23 @@ document.querySelectorAll('.has-video').forEach(card => {
         if (timelineRuler) timelineRuler.innerHTML = '';
     }
 
-    function setView(view) {
+    // Keep the address bar in step with the view so it can be copied, bookmarked
+    // and stepped through with back/forward.
+    function syncUrl(view, { replace = false } = {}) {
+        const url = new URL(window.location.href);
+        if (view === 'timeline') {
+            url.searchParams.set('view', 'timeline');
+            url.searchParams.set('order', timelineDir);
+        } else {
+            url.searchParams.delete('view');
+            url.searchParams.delete('order');
+        }
+        const next = url.pathname + url.search + url.hash;
+        if (next === window.location.pathname + window.location.search + window.location.hash) return;
+        history[replace ? 'replaceState' : 'pushState']({ view, order: timelineDir }, '', next);
+    }
+
+    function setView(view, { url = true, replace = false } = {}) {
         const isTimeline = view === 'timeline';
         if (isTimeline) {
             buildTimeline();
@@ -288,6 +312,7 @@ document.querySelectorAll('.has-video').forEach(card => {
         });
         updateTimelineBtnLabel();
         localStorage.setItem('projectView', view);
+        if (url) syncUrl(view, { replace });
     }
 
     toggle.addEventListener('click', (e) => {
@@ -300,6 +325,7 @@ document.querySelectorAll('.has-video').forEach(card => {
             localStorage.setItem('timelineDir', timelineDir);
             updateTimelineBtnLabel();
             buildTimeline();
+            syncUrl('timeline');
             return;
         }
         setView(view);
@@ -312,13 +338,37 @@ document.querySelectorAll('.has-video').forEach(card => {
         a.addEventListener('click', () => {
             if (document.body.classList.contains('view-timeline') &&
                 categoryAnchors.includes(a.getAttribute('href'))) {
-                setView('category');
+                // Replace, not push: the hash navigation that follows adds its own entry.
+                setView('category', { replace: true });
             }
         });
     });
 
+    // Back/forward between views.
+    window.addEventListener('popstate', () => {
+        const params = new URLSearchParams(window.location.search);
+        const order = params.get('order');
+        const nextDir = order === 'asc' || order === 'desc' ? order : timelineDir;
+        const view = params.get('view') === 'timeline' ? 'timeline' : 'category';
+        const current = document.body.classList.contains('view-timeline') ? 'timeline' : 'category';
+        // Hash-only steps fire popstate too; don't rebuild the DOM for those
+        // unless the view or its order actually changed.
+        if (view === current && nextDir === timelineDir) return;
+        timelineDir = nextDir;
+        localStorage.setItem('timelineDir', timelineDir);
+        setView(view, { url: false });
+    });
+
     const saved = localStorage.getItem('projectView');
-    if (saved === 'timeline') setView('timeline');
+    const startView = urlView === 'timeline' ? 'timeline'
+        : urlView === 'category' ? 'category'
+        : (saved === 'timeline' ? 'timeline' : 'category');
+    if (startView === 'timeline') {
+        setView('timeline', { replace: true });
+    } else if (urlView || urlOrder) {
+        // Clean stray/partial params off the address bar without adding history.
+        setView('category', { replace: true });
+    }
 })();
 
 // ============================================
