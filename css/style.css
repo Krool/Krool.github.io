@@ -939,9 +939,14 @@ body.view-timeline .project-card.featured .project-content {
 
 .project-links {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
     margin-top: auto;
+}
+
+.project-links .btn {
+    white-space: nowrap;
 }
 
 .download-options {
@@ -961,6 +966,7 @@ body.view-timeline .project-card.featured .project-content {
 
 .link {
     color: var(--text-secondary);
+    white-space: nowrap;
     font-size: 0.85rem;
     font-weight: 500;
     transition: color var(--transition);
@@ -972,6 +978,20 @@ body.view-timeline .project-card.featured .project-content {
 .link:hover {
     color: var(--accent);
     text-decoration-color: var(--accent);
+}
+
+/* Store/platform icons inside buttons and links */
+.icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    flex-shrink: 0;
+    vertical-align: -0.125em;
+    margin-right: 0.45em;
+}
+
+.link .icon {
+    margin-right: 0.3em;
 }
 
 /* ============================================

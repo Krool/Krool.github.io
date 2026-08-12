@@ -122,6 +122,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <symbol id="icon-apple" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+        <symbol id="icon-google-play" viewBox="0 0 24 24"><path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35m13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27m3.35-4.31c.34.27.59.69.59 1.19s-.22.9-.57 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31M6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/></symbol>
+        <symbol id="icon-itch" viewBox="0 0 24 24"><path d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.62-2.082-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.412-.486.59a2.788 2.788 0 0 1-1.95.795c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.01-6.514 1.03-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.368-.486-.59-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.793 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.125.107.873-.953 1.578-.95 2.372-.953.376 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.995-.266 3.068-1.636 3.07-2.03-.075-3.156-1.55-3.156-3.025-1.124.184-2.436.276-3.748.277-1.312 0-2.624-.093-3.748-.277 0 1.475-1.125 2.95-3.156 3.026-1.37-.004-2.468-.077-1.636-3.072l1.122-4.027c1.045-2.934 2.545-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.964-2.523 2.662l1.4-.056v1.22c0 .056.56.033 1.123.007.562.026 1.124.05 1.124-.008v-1.22l1.4.055C14.138 14.677 12 12.713 12 12.713z"/></symbol>
+        <symbol id="icon-pc" viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-1 3v1h6v-1l-1-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/></symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="icon-windows" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0zm10.949-1.5L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-13.051-1.801z"/></symbol>
+    </svg>
     <a href="#phone-games" class="skip-link">Skip to content</a>
 
     <nav class="navbar" aria-label="Main navigation">
@@ -187,18 +195,18 @@
             <div class="bento-grid">
 
                 <!-- Lanecraft (Featured) -->
-                <article class="project-card has-video featured" data-date="2026-07-18">
+                <article class="project-card has-video featured" data-date="2026-08-11">
                     <div class="project-image lanecraft" role="img" aria-label="Lanecraft game screenshot">
                         <video class="project-video" muted loop playsinline preload="none" disablePictureInPicture src="assets/images/lanecraft video.mp4"></video>
                     </div>
                     <div class="project-content">
                         <h3>Lanecraft</h3>
-                        <div class="project-tags"><span>RTS</span><span>Multiplayer</span><span>iOS</span><span>Android</span><span>Web</span></div>
-                        <p>A real-time strategy game where you build up your base, spawn units, and push down lanes to destroy the enemy HQ. Play 1v1 up to 4v4 against AI or online with friends. Pick from 9 factions, each with unique units, upgrades, and resource economies. Hire and level 27 heroes, three per faction, each with their own skill kit. Manage your gold, wood, meat, souls, ooze, and mana to outproduce and outfight your opponent.</p>
+                        <div class="project-tags"><span>RTS</span><span>Campaign</span><span>Multiplayer</span><span>iOS</span><span>Android</span><span>Web</span></div>
+                        <p>A real-time strategy game where you build up your base, spawn units, and push down lanes to destroy the enemy HQ. Battle through a 90-mission campaign across all 9 factions, with voiced briefings and named villains who take the field, or play 1v1 up to 4v4 against AI or online with friends. Fight over 52 maps with tunnels, river fords, capturable clan halls, and doomsday weather. Each faction has unique units, upgrades, and resource economies, plus 3 hirable heroes with their own skill kits, 27 in all.</p>
                         <div class="project-links">
-                            <a href="https://apps.apple.com/us/app/lanecraft/id6760628046" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.krool.spawnwars" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Google Play</a>
-                            <a href="https://lanecraft-i3l.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play on Web</a>
+                            <a href="https://apps.apple.com/us/app/lanecraft/id6760628046" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.krool.spawnwars" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-google-play"/></svg>Google Play</a>
+                            <a href="https://lanecraft-i3l.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-pc"/></svg>Play on Web</a>
                         </div>
                     </div>
                 </article>
@@ -213,8 +221,8 @@
                         <div class="project-tags"><span>Endless Runner</span><span>Multiplayer</span><span>iOS</span><span>Web</span></div>
                         <p>The sequel to Dive Dude. Race other divers in real-time online multiplayer, fire off emoji reactions, and dodge hazards across multiple zones. One-tap diving with characters to unlock and leaderboards to climb. Play on iOS or the web.</p>
                         <div class="project-links">
-                            <a href="https://apps.apple.com/us/app/dive-dude-2/id6781379203" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
-                            <a href="https://krool.github.io/DiveDude2/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play on Web</a>
+                            <a href="https://apps.apple.com/us/app/dive-dude-2/id6781379203" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+                            <a href="https://krool.github.io/DiveDude2/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-pc"/></svg>Play on Web</a>
                         </div>
                     </div>
                 </article>
@@ -229,7 +237,7 @@
                         <div class="project-tags"><span>Puzzle</span><span>Cards</span><span>Match</span><span>iOS</span></div>
                         <p>A poker-hand match puzzler. Swap cards to form pairs, flushes, and straights across 145 levels of oddly-shaped boards. Spawn specials, break blockers, and chase three-star finishes across 20 worlds.</p>
                         <div class="project-links">
-                            <a href="https://apps.apple.com/us/app/combo-ace/id6761933536" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
+                            <a href="https://apps.apple.com/us/app/combo-ace/id6761933536" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
                         </div>
                     </div>
                 </article>
@@ -244,8 +252,8 @@
                         <div class="project-tags"><span>Roguelike</span><span>Physics</span><span>Co-op</span><span>iOS</span><span>Android</span></div>
                         <p>A physics-based roguelike where you sling heroes at block structures to destroy enemies. Collect relics, unlock 8 hero classes, and team up in peer-to-peer co-op. Available on iOS and Android.</p>
                         <div class="project-links">
-                            <a href="https://apps.apple.com/us/app/sling-party/id6759985165" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
-                            <a href="https://play.google.com/store/apps/details?id=com.krool.slingparty" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Google Play</a>
+                            <a href="https://apps.apple.com/us/app/sling-party/id6759985165" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.krool.slingparty" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-google-play"/></svg>Google Play</a>
                         </div>
                     </div>
                 </article>
@@ -260,7 +268,7 @@
                         <div class="project-tags"><span>Endless Runner</span><span>iOS</span><span>GameMaker</span></div>
                         <p>A one-tapping, double-jumping, offline-friendly, endless runner for iOS. Dodge hazards, leave tombstones and climb global leaderboards. Multiple modes and characters give you reasons to keep diving.</p>
                         <div class="project-links">
-                            <a href="https://apps.apple.com/us/app/dive-dude/id6450519706" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">App Store</a>
+                            <a href="https://apps.apple.com/us/app/dive-dude/id6450519706" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>App Store</a>
                         </div>
                     </div>
                 </article>
@@ -284,7 +292,7 @@
                         <div class="project-tags"><span>Sports</span><span>Multiplayer</span><span>3D</span><span>Web</span></div>
                         <p>A 3D soccer game for your browser. Pick a side, pass and shoot, and play online with friends. Simple controls, quick matches, no download.</p>
                         <div class="project-links">
-                            <a href="https://krool.github.io/friend-soccer/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
+                            <a href="https://krool.github.io/friend-soccer/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-pc"/></svg>Play Now</a>
                         </div>
                     </div>
                 </article>
@@ -299,8 +307,8 @@
                         <div class="project-tags"><span>Arena</span><span>Roguelike</span><span>Co-op</span><span>ASCII</span></div>
                         <p>SmashTV inspired arena fighter co-op roguelike. Fight through procedurally generated levels, grab upgrades, cash, and class unlocks in peer-to-peer co-op. Collab with lpm24.</p>
                         <div class="project-links">
-                            <a href="https://lpm24.github.io/SuperSmashTexty/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
-                            <a href="https://github.com/lpm24/SuperSmashTexty" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://lpm24.github.io/SuperSmashTexty/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-pc"/></svg>Play Now</a>
+                            <a href="https://github.com/lpm24/SuperSmashTexty" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -315,8 +323,8 @@
                         <div class="project-tags"><span>Survivors</span><span>Roguelike</span><span>Co-op</span><span>Mobile Web</span></div>
                         <p>A Vampire Survivors-style space shooter you can play in your phone's browser (Share->AddToHome for offline). Collect weapons, trigger evolutions, and survive waves of enemies across many levels. Peer-to-peer co-op lets you team up with friends.</p>
                         <div class="project-links">
-                            <a href="https://krool.github.io/AcecraftPrototype/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
-                            <a href="https://github.com/Krool/AcecraftPrototype" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://krool.github.io/AcecraftPrototype/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-pc"/></svg>Play Now</a>
+                            <a href="https://github.com/Krool/AcecraftPrototype" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -331,7 +339,7 @@
                         <div class="project-tags"><span>Management Sim</span><span>Roguelike</span><span>itch.io</span></div>
                         <p>Run a fantasy raiding guild. Recruit heroes, build out their skill trees, and race rival AI guilds to world-first raid clears. A roguelike management sim with deep meta progression.</p>
                         <div class="project-links">
-                            <a href="https://krool.itch.io/gl?utm_source=homepage&amp;utm_medium=referral&amp;utm_campaign=gl-portal" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play on itch.io</a>
+                            <a href="https://krool.itch.io/gl?utm_source=homepage&amp;utm_medium=referral&amp;utm_campaign=gl-portal" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-itch"/></svg>Play on itch.io</a>
                         </div>
                     </div>
                 </article>
@@ -346,8 +354,8 @@
                         <div class="project-tags"><span>Gacha</span><span>Gen 1</span><span>Collector</span></div>
                         <p>Relive Gen 1 nostalgia one pull at a time. Collect all 151 Pokemon and 79 classic items across four gacha machines, and fill out your Pokedex.</p>
                         <div class="project-links">
-                            <a href="https://krool.github.io/PokemonBlueGacha/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Play Now</a>
-                            <a href="https://github.com/Krool/PokemonBlueGacha" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://krool.github.io/PokemonBlueGacha/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-pc"/></svg>Play Now</a>
+                            <a href="https://github.com/Krool/PokemonBlueGacha" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -372,7 +380,7 @@
                         <p>Plug in your ESPN, Sleeper, or Yahoo league and get instant draft grades, league awards, trade analysis, and roster breakdowns. See how your team actually stacks up.</p>
                         <div class="project-links">
                             <a href="https://krool.github.io/FantasyFootballAnalyzer/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/FantasyFootballAnalyzer" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/FantasyFootballAnalyzer" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -388,7 +396,7 @@
                         <p>Pick a car, set it as your baseline, and compare it against anything else on the lot. Filter by price, fuel type, body style, width, and more.</p>
                         <div class="project-links">
                             <a href="https://krool.github.io/CarCompare/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/CarCompare" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/CarCompare" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -404,7 +412,7 @@
                         <p>Find your next trip by telling it how long you want to go, where you're starting from, and what time of year works. A travel planner that narrows down destinations and helps you decide.</p>
                         <div class="project-links">
                             <a href="https://krool.github.io/TravelAgentZero/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/TravelAgentZero" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/TravelAgentZero" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -420,7 +428,7 @@
                         <p>Research kitchen appliances using aggregated ratings from Consumer Reports, Wirecutter, Reviewed, Yale, and Rtings. ~200 refrigerators, dishwashers, and ranges scored on quality, reliability, price, energy, and quietness.</p>
                         <div class="project-links">
                             <a href="https://krool.github.io/ApplianceCompare/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/ApplianceCompare" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/ApplianceCompare" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -436,7 +444,7 @@
                         <p>March Madness fantasy draft tool. Projects total tournament scoring using KenPom ratings, ESPN player stats, and injury data. Features an interactive draft board with filtering, favorites, and CSV export.</p>
                         <div class="project-links">
                             <a href="https://krool.github.io/BasketballProjections/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Site</a>
-                            <a href="https://github.com/Krool/BasketballProjections" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/BasketballProjections" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -465,13 +473,13 @@
                                class="btn btn-primary btn-sm"
                                data-win="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-setup.exe"
                                data-mac-arm="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-macos-aarch64.dmg"
-                               >Download for Windows</a>
+                               ><svg class="icon" aria-hidden="true"><use href="#icon-windows"/></svg>Download for Windows</a>
                             <div class="download-options" aria-label="Other downloads">
-                                <a class="btn btn-ghost btn-sm" href="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-setup.exe">Windows</a>
-                                <a class="btn btn-ghost btn-sm" href="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-macos-aarch64.dmg">macOS (Apple Silicon)</a>
-                                <a class="btn btn-ghost btn-sm" href="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-macos-x64.dmg">macOS (Intel)</a>
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-setup.exe"><svg class="icon" aria-hidden="true"><use href="#icon-windows"/></svg>Windows</a>
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-macos-aarch64.dmg"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>macOS (Apple Silicon)</a>
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/Krool/DesktopAquarium/releases/latest/download/ASCII.Reef_latest-macos-x64.dmg"><svg class="icon" aria-hidden="true"><use href="#icon-apple"/></svg>macOS (Intel)</a>
                             </div>
-                            <a href="https://github.com/Krool/DesktopAquarium" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/DesktopAquarium" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -487,7 +495,7 @@
                         <p>A D&amp;D typing adventure for up to 4 players. Type falling words to cast spells and survive, while an on-device AI spins the story around you. Built in Unity with Sentis GPT-2.</p>
                         <div class="project-links">
                             <a href="https://www.youtube.com/watch?v=w5rbSssbBP8" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Watch Demo</a>
-                            <a href="https://github.com/Krool/Typecast" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="https://github.com/Krool/Typecast" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>
@@ -502,8 +510,8 @@
                         <div class="project-tags"><span>Utility</span><span>Desktop</span></div>
                         <p>Browse every screenshot you've ever taken on Steam, organized by game. A lightweight desktop viewer that beats digging through folders.</p>
                         <div class="project-links">
-                            <a href="downloads/GameScreenshotViewer_Setup_2.0.0.exe" download class="btn btn-primary btn-sm">Download</a>
-                            <a href="https://github.com/Krool/Screenshot-Viewer" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                            <a href="downloads/GameScreenshotViewer_Setup_2.0.0.exe" download class="btn btn-primary btn-sm"><svg class="icon" aria-hidden="true"><use href="#icon-windows"/></svg>Download</a>
+                            <a href="https://github.com/Krool/Screenshot-Viewer" target="_blank" rel="noopener noreferrer" class="link"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>Source</a>
                         </div>
                     </div>
                 </article>

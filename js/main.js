@@ -379,9 +379,9 @@ document.querySelectorAll('.has-video').forEach(card => {
     if (!primary) return;
 
     // Keep primary CTA stable; users choose explicit macOS builds below.
+    // Only reset the href - the label (with its inline icon) is authored in the HTML.
     if (primary.dataset.win) {
         primary.href = primary.dataset.win;
-        primary.textContent = 'Download for Windows';
     }
 })();
 
