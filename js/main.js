@@ -333,7 +333,7 @@ document.querySelectorAll('.has-video').forEach(card => {
 
     // When in timeline mode, clicking a category nav link should flip the
     // view back to category first, otherwise the anchor jumps to a hidden section.
-    const categoryAnchors = ['#phone-games', '#web-games', '#desktop', '#web-tools'];
+    const categoryAnchors = ['#phone-games', '#web-games', '#desktop', '#web-tools', '#mods'];
     document.querySelectorAll('.nav-links a[href^="#"], .footer-links a[href^="#"]').forEach(a => {
         a.addEventListener('click', () => {
             if (document.body.classList.contains('view-timeline') &&

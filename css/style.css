@@ -1207,3 +1207,14 @@ body.menu-open {
         transition-duration: 0.01ms !important;
     }
 }
+
+.project-image.sf-tk-compare { background-image: url('../assets/images/sf tk compare screenshot.webp'); background-size: cover; background-position: top left; }
+.project-image.krool-home { background-image: url('../assets/images/krool world home screenshot.webp'); background-size: cover; background-position: top left; }
+.project-image.freddy-chill-yeti { background-image: url('../assets/images/freddy chill yeti screenshot.webp'); background-size: cover; background-position: center; }
+.project-image.performance-widget { background-image: url('../assets/images/performance widget screenshot.webp'); background-size: cover; background-position: center; }
+.project-image.krool-world-ui { background-image: url('../assets/images/krool world ui screenshot.webp'); background-size: cover; background-position: top left; }
+.project-image.krool-world-forever { background-image: url('../assets/images/krool world forever screenshot.webp'); background-size: cover; background-position: center; }
+
+/* Announced but not out yet: reads as a label, not a link. */
+.btn-soon { cursor: default; border: 1px dashed var(--border); }
+.btn-soon:hover { color: var(--text-secondary); background: transparent; }
