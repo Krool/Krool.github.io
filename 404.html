@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found · Krool World</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>
+    // Project paths are case-sensitive on GitHub Pages, so /home misses /Home/.
+    // Send a wrong-case first segment to the real project, keeping the rest of the URL.
+    (function () {
+      var sites = ['AcecraftPrototype', 'ApplianceCompare', 'BasketballProjections', 'CarCompare', 'DiveDude2',
+        'FantasyFootballAnalyzer', 'friend-soccer', 'HarvestFestival', 'Home', 'jelly-world', 'krool-world-legal',
+        'lanecraft-web', 'PokemonBlueGacha', 'RingSquadron', 'SarasPortfolio', 'sf-tk-compare', 'sling-party-web',
+        'TravelAgentZero', 'Typecast2'];
+      var parts = location.pathname.split('/');
+      var first = parts[1] || '';
+      for (var i = 0; i < sites.length; i++) {
+        if (sites[i].toLowerCase() === first.toLowerCase() && sites[i] !== first) {
+          parts[1] = sites[i];
+          var path = parts.join('/');
+          if (parts.length === 2) path += '/';
+          location.replace(path + location.search + location.hash);
+          return;
+        }
+      }
+    })();
+  </script>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0a0a0b; color: #e4e4e7; font-family: system-ui, sans-serif; text-align: center; padding: 16px; box-sizing: border-box; }
+    h1 { font-size: 1.6rem; margin: 0 0 12px; }
+    a { color: #818cf8; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Page not found</h1>
+    <p><a href="/">Back to Krool World</a></p>
+  </main>
+</body>
+</html>
