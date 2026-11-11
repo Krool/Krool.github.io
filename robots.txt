@@ -7,7 +7,7 @@ Allow: /
 # Crawl-delay for polite crawling (optional, respected by some bots)
 Crawl-delay: 1
 
-# Main sitemap index (contains all sub-sitemaps)
+# Main sitemap
 Sitemap: https://krool.github.io/sitemap.xml
 
 # Individual sitemaps for faster discovery
