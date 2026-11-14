@@ -1216,6 +1216,7 @@ body.menu-open {
 .project-image.performance-widget { background-image: url('../assets/images/performance widget screenshot.webp'); background-size: cover; background-position: center; }
 .project-image.krool-world-ui { background-image: url('../assets/images/krool world ui screenshot.webp'); background-size: cover; background-position: top left; }
 .project-image.krool-world-forever { background-image: url('../assets/images/krool world forever screenshot.webp'); background-size: cover; background-position: center; }
+.project-image.reagent-uses { background-image: url('../assets/images/reagent uses logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #111a24; }
 
 /* Announced but not out yet: reads as a label, not a link. */
 .btn-soon { cursor: default; border: 1px dashed var(--border); }
