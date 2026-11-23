@@ -883,6 +883,12 @@ body.view-timeline .project-card.featured .project-content {
     background-position: center;
 }
 
+.project-image.warlike {
+    background-image: url('../assets/images/warlike screenshot.webp');
+    background-size: cover;
+    background-position: center;
+}
+
 .project-image.friend-soccer {
     background-image: url('../assets/images/friend soccer screenshot.webp');
     background-size: cover;

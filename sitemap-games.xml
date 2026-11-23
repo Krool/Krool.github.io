@@ -62,6 +62,14 @@
     </image:image>
   </url>
 
+  <!-- Warlike -->
+  <url>
+    <loc>https://krool.github.io/war-game/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Friend Soccer -->
   <url>
     <loc>https://krool.github.io/friend-soccer/</loc>
