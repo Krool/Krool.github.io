@@ -8,14 +8,23 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>
     // Project paths are case-sensitive on GitHub Pages, so /home misses /Home/.
-    // Send a wrong-case first segment to the real project, keeping the rest of the URL.
+    // Send a wrong-case or renamed first segment to the real project, keeping the rest of the URL.
     (function () {
       var sites = ['AcecraftPrototype', 'ApplianceCompare', 'BasketballProjections', 'CarCompare', 'DiveDude2',
-        'FantasyFootballAnalyzer', 'friend-soccer', 'HarvestFestival', 'Home', 'jelly-world', 'krool-world-legal',
+        'FantasyFootballAnalyzer', 'flyer', 'friend-soccer', 'HarvestFestival', 'Home', 'jelly-world', 'krool-world-legal',
         'lanecraft-web', 'PokemonBlueGacha', 'RingSquadron', 'SarasPortfolio', 'sf-tk-compare', 'sling-party-web',
         'TravelAgentZero', 'Typecast2'];
       var parts = location.pathname.split('/');
       var first = parts[1] || '';
+      // projects whose repo was renamed: old first segment -> new one
+      var renamed = { 'littleflyer-opus': 'flyer' };
+      if (renamed.hasOwnProperty(first.toLowerCase())) {
+        parts[1] = renamed[first.toLowerCase()];
+        var to = parts.join('/');
+        if (parts.length === 2) to += '/';
+        location.replace(to + location.search + location.hash);
+        return;
+      }
       for (var i = 0; i < sites.length; i++) {
         if (sites[i].toLowerCase() === first.toLowerCase() && sites[i] !== first) {
           parts[1] = sites[i];
